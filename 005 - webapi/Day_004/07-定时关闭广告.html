@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时隐藏</title>
+</head>
+
+<body>
+    <img src="ad.jpg" alt="">
+    <script>
+        // 获取事件源
+        var img = document.querySelector('img')
+            //事件类型 定时关闭
+        window.setTimeout(function() {
+            img.style.display = 'none' //隐藏img
+        }, 3000)
+    </script>
+</body>
+
+</html>

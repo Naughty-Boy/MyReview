@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取自定义属性</title>
+</head>
+
+<body>
+    <div class="box" index="1" data-index="2" data-index-name></div>
+    <script>
+        var box = document.querySelector('.box')
+            // 1  元素.属性
+        console.log(box.className);
+        // 2 元素.getAttribute('属性')
+        console.log(box.getAttribute('class'));
+        console.log(box.getAttribute('index'));
+        // 3 给元素设置属性值  
+        // 元素.属性='值'
+        box.index = '3'
+            // 元素.setAtteribute('属性','值')
+        box.setAttribute('index', 2);
+        // 4 移除元素属性
+        box.removeAttribute('index');
+
+        // H5新增获取属性方法
+        // dataset  是一个存放所有以data开头的自定义属性
+        // 如果里面有多个单词链接  我们采取驼峰命名法
+        console.log(box.dataset);
+        console.log(box.dataset.indexName);
+    </script>
+</body>
+
+</html>

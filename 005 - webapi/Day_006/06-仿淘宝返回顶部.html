@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        
+        .container {
+            width: 800px;
+            margin: 10px auto;
+        }
+        
+        .first {
+            height: 100px;
+            background-color: lightblue;
+        }
+        
+        .second {
+            height: 500px;
+            background-color: orange;
+        }
+        
+        .third {
+            height: 800px;
+            background-color: pink;
+        }
+        
+        p {
+            display: none;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <p class="back">返回顶部</p>
+    </div>
+    <div class="first container">头部区域</div>
+    <div class="second container">second区域</div>
+    <div class="third container">主体部分</div>
+    <script>
+        //1. 获取元素
+        var sliderbar = document.querySelector('.slider');
+        var second = document.querySelector('.second');
+        var third = document.querySelector('.third');
+        var back = document.querySelector('.back');
+        // 向上滚动的大小
+        var secondTop = second.offsetTop
+            // 侧边栏距离secondTop的距离
+        var sliderbarTop = sliderbar.offsetTop - secondTop;
+        var thirdTop = third.offsetTop;
+        // 页面滚动事件 scroll
+        document.addEventListener('scroll', function() {
+                // window.pageYOffset代表页面向上滚动的距离
+                //页面向上滚动的距离大于等于了 172 改变侧边栏的定位
+                if (window.pageYOffset >= secondTop) {
+                    sliderbar.style.position = 'fixed';
+                    sliderbar.style.top = sliderbarTop + 'px';
+                } else {
+                    sliderbar.style.position = 'absolute';
+                    sliderbar.style.top = '300px';
+                }
+                //页面滚动到third盒子则显示back模块
+                if (window.pageYOffset >= thirdTop) {
+                    back.style.display = 'block';
+                } else {
+                    back.style.display = 'none';
+                }
+
+            })
+            //点击返回顶部
+        back.addEventListener('click', function() {
+            //让向上滚动的距离变为0
+            animate(window, 0);
+        });
+        // 动画函数
+        function animate(obj, target, callback) {
+            // 清除定时器，防止重叠
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function() {
+                // 目标和判断
+                var step = (target - window.pageYOffset) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (window.pageYOffset == target) {
+                    //达到目标即停止
+                    clearInterval(obj.timer);
+                    // 判断是否有回调，有则执行
+                    if (callback) {
+                        // 调用函数
+                        callback();
+                    }
+                }
+                window.scroll(0, window.pageYOffset + step);
+            }, 30);
+        }
+    </script>
+</body>
+
+</html>

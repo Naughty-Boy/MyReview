@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" bartent="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" bartent="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider {
+            position: fixed;
+            right: 0;
+            bottom: 100px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 40px;
+            background-color: purple;
+            z-index: -1;
+        }
+    </style>
+    <script src="animate.js"></script>
+</head>
+
+<body>
+    <div class="slider">
+        <p>←</p>
+        <div class="bar">问题反馈</div>
+    </div>
+
+    <script>
+        // 首先获取元素
+        var slider = document.querySelector('.slider');
+        var bar = document.querySelector('.bar');
+        //鼠标移入
+        slider.addEventListener('mouseenter', function() {
+                // 调用带有回调的动画
+                animate(bar, -160, function() {
+                    // 箭头切换
+                    //通过子元素获取
+                    slider.children[0].innerHTML = '→';
+                });
+
+            })
+            //鼠标移出
+        slider.addEventListener('mouseleave', function() {
+            animate(bar, 0, function() {
+                //通过子元素获取
+                slider.children[0].innerHTML = '←';
+            });
+
+        })
+    </script>
+</body>
+
+</html>

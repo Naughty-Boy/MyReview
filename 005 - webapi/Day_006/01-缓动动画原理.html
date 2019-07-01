@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+        }
+        
+        p {
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 200px;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点我试试看</button>
+    <p>我是大帅哥</p>
+
+</body>
+
+</html>
+<script>
+    //首先获取元素
+    var p = document.querySelector('p');
+    var btn = document.querySelector('button');
+    //通过传入对象和动画的目标值来封装函数
+    function animate(obj, target) {
+        // 将之前的定时器清除，以防重叠
+        clearInterval(obj.interval);
+        obj.interval = setInterval(function() {
+            // 每次移动的量并判断
+            var step = (target - obj.offsetLeft) / 10;
+            if (obj.offsetLeft == target) {
+                //达到目标即停止
+                clearInterval(obj.interval);
+            }
+            // 把每次加1 这个步长值改为一个慢慢变小的值  步长公式：(目标值 - 现在的位置) / 10
+            obj.style.left = obj.offsetLeft + step + 'px';
+
+        }, 15);
+    }
+
+    btn.addEventListener('click', function() {
+        // 调用函数
+        animate(p, 500);
+    })
+</script>

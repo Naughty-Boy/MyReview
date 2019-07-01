@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab栏切换</title>
+    <style>
+        .banner {
+            width: 1000px;
+            height: 1000px;
+            margin: 200px auto;
+        }
+        
+        ul {
+            padding: 0;
+            margin: 0 auto;
+            width: 800px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        
+        li {
+            float: left;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            list-style: none;
+        }
+        
+        div {
+            margin: auto;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="banner">
+        <ul>
+            <li>首页</li>
+            <li>详情</li>
+            <li>售后</li>
+            <li>其他</li>
+        </ul>
+        <div>这里是首页</div>
+        <div>这里是详情</div>
+        <div>这里是售后</div>
+        <div>这里是其他</div>
+    </main>
+    <script>
+        var lis = document.querySelectorAll('li')
+        var boxs = document.querySelectorAll('div')
+        for (var i = 0; i < lis.length; i++) { //lis控制所有事件
+            // 1 选项模块 
+            // 给lis添加index属性并索引值
+            lis[i].setAttribute('num', i) //给每个li添加num属性 属性值为i
+            lis[i].onclick = function() { //排他思想 所有li都不变色
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].style.backgroundColor = ''
+                }
+                this.style.backgroundColor = 'red' //当前点击的li变色
+                    // 2 显示内容模块
+                var index = this.getAttribute('num') //index获取当前li的num属性的值i
+                    // console.log(index);
+                for (var j = 0; j < boxs.length; j++) { //排他思想  所有box都隐藏
+                    boxs[j].style.display = 'none'
+                }
+                boxs[index].style.display = 'block'
+                    // index=当前点击的li 点击的第li个的对应box显示
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function Star(uname, age, sex) {
+            this.name = uname;
+            this.age = age;
+            this.sex = sex;
+            this.song = function(song) {
+                console.log(song);
+
+            }
+        }
+        var ldh = new Star('刘德华', 18, '男');
+        console.log(ldh.name);
+        console.log(ldh.age);
+        console.log(ldh['sex']);
+        ldh.song('冰雨');
+
+        console.log('------------------------------------');
+
+        var zxy = new Star('张学友', 21, '男');
+        console.log(zxy.name);
+        console.log(zxy.age);
+        console.log(zxy['sex']);
+        zxy.song('李香兰');
+
+        console.log('--------------------------------');
+
+        function Dog(name, color, weight) {
+            this.name = name;
+            this.color = color;
+            this.weight = weight;
+            this.skill = function(skill) {
+                console.log(skill);
+            }
+        }
+        var dog1 = new Dog('大黄', '黄色', '20');
+        console.log(dog1.color);
+        console.log(dog1.name);
+        console.log(dog1.weight);
+        dog1.skill('叫');
+
+        console.log('------------------------------------');
+
+        var dog2 = new Dog('小黄', '黄色', '20');
+        console.log(dog1.color);
+        console.log(dog1.name);
+        console.log(dog1.weight);
+        dog1.skill('汪汪汪');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

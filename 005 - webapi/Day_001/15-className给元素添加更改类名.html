@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加更改类名</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            font-size: 24px;
+        }
+        
+        .first {
+            font-size: purple;
+            text-align: center;
+        }
+        
+        .flag {
+            background-color: aqua;
+            font-size: 30px;
+            line-height: 200px;
+            color: deepskyblue;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="first">文本内容</div>
+    <script>
+        // 获取事件
+        var div = document.querySelector('div')
+        div.onclick = function() {
+            // 1 如果更改的元素较少我们可以通过this.style更改  如果比较多 我们就用className
+            this.className = 'flag'
+                //2 鼠标点击给元素添加新的类名  但是会覆盖原来的类名
+                //3 如果想要保存原来的类名 就要用到多类名
+            this.className = 'flag first'
+        }
+    </script>
+</body>
+
+</html>

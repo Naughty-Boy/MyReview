@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+    <style>
+        div {
+            display: none;
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 20px;
+            padding-left: 10px;
+        }
+        
+        input {
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入内容">
+    <div></div>
+    <script>
+        // 输入文本内容在div中放大显示
+        // 获取事件 div input
+        var div = document.querySelector('div')
+        var inp = document.querySelector('input')
+            // 事件类型  事件处理
+            // 键盘弹起触发事件
+        inp.addEventListener('keyup', function() {
+                if (this.value == '') {
+                    div.style.display = 'none'
+                } else {
+                    div.style.display = 'block'
+                    div.innerText = this.value
+                }
+            })
+            // 失去焦点隐藏 获得焦点显示
+        inp.addEventListener('blur', function() { // blur失去焦点
+            div.style.display = 'none'
+        })
+        inp.addEventListener('focus', function() { //focus获得焦点
+            if (this.value != '') {
+                div.style.display = 'block'
+            }
+        })
+    </script>
+</body>
+
+</html>

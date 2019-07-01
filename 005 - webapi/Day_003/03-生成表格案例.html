@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成表格案例</title>
+    <style>
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            /*去除表格边框 */
+        }
+        
+        th,
+        td {
+            width: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            height: 30px;
+        }
+        
+        th {
+            height: 50px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        // 先生成数据 数组中的对象
+        var arr = [{
+            name: '鸣人',
+            subject: '中忍考试',
+            score: 90,
+        }, {
+            name: '佐助',
+            subject: '中忍考试',
+            score: 90,
+        }, {
+            name: '卡卡西',
+            subject: '中忍考试',
+            score: 90,
+        }, {
+            name: '德玛西亚',
+            subject: '白银晋级赛',
+            score: '失败'
+        }]
+        var tbody = document.querySelector('tbody')
+            // 遍历数组对象
+        for (var i = 0; i < arr.length; i++) {
+            //1 创建tr并添加到tbody中
+            var tr = document.createElement('tr')
+            tbody.appendChild(tr)
+                //2 在tr行中创建添加td单元格 td单元格的数量取决于每个对象里的属性个数  遍历对象
+            for (var key in arr[i]) {
+                //创建td单元格 个数取决于循环的次数
+                var td = document.createElement('td')
+                    // td里面的内容是对象中的属性值
+                td.innerHTML = arr[i][key]
+                    // 添加td到tr中
+                tr.appendChild(td)
+            }
+            //3 创建td删除单元格
+            var td = document.createElement('td')
+                // 给td添加链接内容
+            td.innerHTML = '<a href="javascript:;">删除</a>'
+                // 把td添加到tr中
+            tr.appendChild(td)
+        }
+        //4 添加删除事件
+        // 获取事件源
+        var as = document.querySelectorAll('a')
+        for (var k = 0; k < as.length; k++) {
+            // 事件类型当第k个a点击触发
+            as[k].onclick = function() {
+                // tbody删除这个a的父元素的父元素
+                tbody.removeChild(this.parentNode.parentNode)
+            }
+        }
+    </script>
+</body>
+
+</html>

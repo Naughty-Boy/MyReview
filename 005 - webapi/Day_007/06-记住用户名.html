@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username" placeholder="请输入用户名"> <input type="checkbox" name="" id="store"> 记住用户名
+</body>
+<script>
+    //获取元素
+    var username = document.querySelector('#username');
+    var store = document.querySelector('#store');
+    //在页面打开时判断是否已经保存过了，如果是则勾选
+    if (localStorage.getItem('username')) {
+        username.value = localStorage.getItem('username');
+        store.checked = true;
+    }
+    //根据checked的改变来切换保存还是删除
+    store.addEventListener('change', function() {
+        if (this.checked) {
+            //保存
+            localStorage.setItem('username', username.value)
+        } else {
+            //删除
+            localStorage.removeItem('username');
+        }
+    })
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>清楚定时</title>
+</head>
+
+<body>
+    <img src="ad.jpg" alt="">
+    <button>不关闭广告</button>
+    <script>
+        // 获取事件源
+        var img = document.querySelector('img')
+        var btn = document.querySelector('button')
+            //事件类型 定时关闭
+        var time = window.setTimeout(function() {
+                img.style.display = 'none' //隐藏img
+            }, 3000)
+            // 事件类型 鼠标点击
+        btn.addEventListener('click', function() {
+            clearTimeout(time) // clearTimeout  清楚定时效果
+        })
+    </script>
+</body>
+
+</html>

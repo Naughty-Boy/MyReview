@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新增方法</title>
+</head>
+
+<body>
+    <div class="box">盒子</div>
+    <div class="box">盒子</div>
+    <ul id="nav">
+        <li>简介</li>
+        <li>简介</li>
+        <li>简介</li>
+    </ul>
+    <script>
+        // 1 getElementsByClassName  获取类名元素集合
+        var boxs = document.getElementsByClassName('box')
+        console.log(boxs);
+        // 2  querySelector  获取指定选择器的第一个元素对象  
+        var firstbox = document.querySelector('.box')
+        console.log(firstbox);
+        var nav = document.querySelector('#nav')
+        console.log(nav);
+        // 3 querySelectorAll   获取指定选择器的全部元素对象集合
+        var allbox = document.querySelectorAll('.box')
+        console.log(allbox);
+        var lis = document.querySelectorAll('li')
+        console.log(lis);
+    </script>
+</body>
+
+</html>

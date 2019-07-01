@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子元素第一个和最后一个</title>
+</head>
+
+<body>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+    <script>
+        var ol = document.querySelector('ol')
+            // 1 firstChild  获取第一个子节点 不管是文本 还是元素
+        console.log(ol.firstChild); // 返回的是text文本节点
+        // 2 firstElementChild 返回第一个子元素节点   兼容问题
+        console.log(ol.firstElementChild); //返回的是元素节点 li1
+        // 3 实际开发常用写法  chilidren[]
+        console.log(ol.children[0]); // 获取子元素数组中的第一个元素节点
+        console.log(ol.children[ol.children.length - 1]); //获取子元素数组中的最后一个元素节点
+    </script>
+</body>
+
+</html>

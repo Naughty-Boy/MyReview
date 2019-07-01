@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计时器</title>
+</head>
+
+<body>
+    <script>
+        // 定时器 setTimeout
+        // 1 完整语法  window.setTimeout(执行函数, 计时时间)  window可以省略
+        // 2 计时时间单位是毫秒  默认值为0
+        // 3 调用函数的时候可以直接写函数 也可以写函数名
+        // 4 我们通常给定时器设置名字
+        window.setTimeout(function() { //不需要触发条件 直接写函数
+            console.log('定时爆炸');
+        }, 3000)
+
+        function bool() {
+            console.log('爆炸了');
+        }
+        setTimeout(bool, 3000) //调用函数
+        setTimeout('bool()', 3000)
+    </script>
+</body>
+
+</html>

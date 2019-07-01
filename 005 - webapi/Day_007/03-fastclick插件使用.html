@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
+<!-- 引入fastclick -->
+<script src="fastclick.js"></script>
+<script>
+    //获取元素
+    var div = document.querySelector('div');
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // 调用fastclick的方法
+            FastClick.attach(document.body);
+        }, false);
+    }
+    // 添加点击事件
+    div.addEventListener('click', function() {
+        alert(11);
+    })
+</script>

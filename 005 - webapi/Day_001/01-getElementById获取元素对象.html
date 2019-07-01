@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取元素对象</title>
+</head>
+
+<body>
+    <div id="time">2019-11-11</div>
+    <script>
+        //1 因为我们的页面是从上往下加载  所以先读取到标签  所以script写到标签下面
+        //2 get获得 element元素 by通过  id名  驼峰命名法getElementById
+        //3 参数id的大小写必须一样
+        //4 获得的元素是一个对象
+        var times = document.getElementById('time') //方法(函数)
+        console.log(times);
+        console.log(typeof(times)); //返回的是object 对象类型
+        // console.dir()打印出来的元素对象  可以更好的查看里面的属性和方法
+        console.dir(times)
+        console.log(times.innerText); //既然是元素对象  那么对象就有属性值   返回的是2019-11-11
+    </script>
+</body>
+
+</html>

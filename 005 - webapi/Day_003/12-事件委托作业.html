@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托</title>
+</head>
+
+<body>
+    <button>点击添加</button>
+    <ul>
+        <li>关羽</li>
+        <li>张飞</li>
+        <li>赵云</li>
+        <li>马超</li>
+        <li>黄忠</li>
+    </ul>
+    <script>
+        // 获取事件
+        var ul = document.querySelector('ul')
+        var btn = document.querySelector('button')
+        ul.addEventListener('click', function(e) {
+                e.target.style.color = 'aqua' //获取触发的元素添加颜色
+            })
+            // 鼠标点击触发事件处理btn
+        btn.addEventListener('click', function() {
+            // 生成新的li元素
+            var lis = document.createElement('li')
+            lis.innerHTML = '刘备' //新的元素内容为刘备
+            ul.insertBefore(lis, ul.children[0]) //在ul中添加lis,位置为ul子元素中的第一个位置
+        })
+    </script>
+</body>
+
+</html>

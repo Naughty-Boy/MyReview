@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件处理</title>
+    <style>
+        .father {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // 事件处理过程
+        // 1 事件捕获
+        // 2 事件处理程序
+        // 3 事件冒泡
+        // 默认执行的是事件处理程序和事件冒泡执行函数
+        var son = document.querySelector('.son')
+        var father = document.querySelector('.father')
+            // son.addEventListener('click', function() {
+            //     alert('son')
+            // }, false); //默认的是false 事件冒泡执行函数
+            // father.addEventListener('click', function() {
+            //     alert('father');
+            // }, false); //冒泡顺序从子到父
+        son.addEventListener('click', function() {
+            alert('son')
+        }, true); //true  事件捕获执行函数
+        father.addEventListener('click', function() {
+            alert('father');
+        }, true); //捕获顺序从父到子
+    </script>
+</body>
+
+</html>

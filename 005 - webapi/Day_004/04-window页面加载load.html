@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面加载</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        // 获取事件
+        var btn = document.querySelector('button')
+            // 事件类型  事件处理
+            // onload页面加载全部加载完成
+        window.addEventListener('load', function() { // load页面全部加载完成执行
+                alert('load')
+            })
+            // DOMContentLoaded//页面文档加载完成
+        window.addEventListener('DOMContentLoaded', function() {
+            alert('DOMContentLoaded')
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            margin: 200px auto;
+        }
+        
+        span {
+            display: inline-block;
+            width: 110px;
+            height: 80px;
+            line-height: 80px;
+            color: aliceblue;
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        .day {
+            color: #000;
+            background-color: pink;
+        }
+        
+        .hours {
+            background-color: orange;
+        }
+        
+        .minute {
+            background-color: skyblue;
+        }
+        
+        .second {
+            background-color: turquoise;
+        }
+        
+        a {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 50px;
+            color: #f40;
+            font-size: 50px;
+            letter-spacing: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="#">双十一倒计时</a>
+        <span class="day"></span>
+        <span class="hours"></span>
+        <span class="minute"></span>
+        <span class="second"></span>
+    </div>
+    <script>
+        // 获取事件源
+        var day = document.querySelector('.day')
+        var hours = document.querySelector('.hours')
+        var minute = document.querySelector('.minute')
+        var second = document.querySelector('.second')
+            // 事件类型  事件处理
+        function countdown(time) {
+            var nowTime = +new Date() //当前时间
+            var endTime = +new Date(time) //time用户输入时间
+            var times = (endTime - nowTime) / 1000 //获取剩余多少秒
+                // 给事件添加值
+            var d = parseInt(times / 60 / 60 / 24)
+            d = d < 10 ? '0' + d : d
+            day.innerHTML = d + ' 天'
+            var h = parseInt(times / 60 / 60 % 24)
+            h = h < 10 ? '0' + h : h
+            hours.innerHTML = h + ' 时'
+            var m = parseInt(times / 60 % 60)
+            m = m < 10 ? '0' + m : m
+            minute.innerHTML = m + ' 分'
+            var s = parseInt(times % 60)
+            s = s < 10 ? '0' + s : s
+            second.innerHTML = s + ' 秒'
+        }
+        // 计时器调用函数 每一秒执行一次
+        countdown('2020-01-01 00:00:00') //先调用一次函数 提前执行防止空白  原理回调函数异步处理
+        setInterval('countdown("2020-01-01 00:00:00")', 1000)
+    </script>
+</body>
+
+</html>

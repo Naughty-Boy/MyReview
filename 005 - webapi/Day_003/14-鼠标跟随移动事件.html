@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标跟随移动事件</title>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="angel.gif" alt="">
+    <script>
+        // 1 获取事件
+        var img = document.querySelector('img')
+            // 事件类型(鼠标跟随移动)  事件处理(更改img的top,left属性)
+        document.addEventListener('mousemove', function(e) {
+            var X = e.pageX
+            var Y = e.pageY
+            img.style.top = Y - 40 + 'px'
+            img.style.left = X - 40 + 'px'
+        })
+    </script>
+</body>
+
+</html>

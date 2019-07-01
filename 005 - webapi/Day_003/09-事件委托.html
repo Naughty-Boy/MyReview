@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        // 获取事件源
+        var ul = document.querySelector('ul')
+            // 添加注册事件
+            // 给父节点添加监听  利用冒泡影响子节点
+        ul.addEventListener('click', function(e) {
+            // e.target可以获得点击的对象
+            e.target.style.color = 'pink' //e.target事件源
+        })
+    </script>
+</body>
+
+</html>

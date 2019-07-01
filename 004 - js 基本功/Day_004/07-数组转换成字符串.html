@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var arr = ['red', 'green', 'blue', 'pink'];
+        var str = '';
+        var seq = '|';
+        for (var i = 0; i <= arr.length; i++) {
+            str += arr[i] + seq;
+        }
+        console.log(str);
+
+        var arr = ['pink', 'red', 'blue'];
+        var sep = '|'
+        var str = '';
+        for (var i = 0; i < arr.length; i++) {
+            // str += arr[i] + sep;
+            if (i == arr.length - 1) {
+                str += arr[i];
+            } else {
+                str += arr[i] + sep
+            }
+        }
+        console.log(str);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

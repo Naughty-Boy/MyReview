@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    //skill 技能
+    var dog = {
+        dogname: '可可',
+        type: '阿拉斯加犬',
+        age: 5,
+        color: '红棕色',
+        skill: function() {
+
+            console.log('汪汪汪' + '\t' + '演电影');
+
+        }
+    }
+    console.log(dog.dogname);
+
+    console.log(dog['type']);
+
+    dog.skill();
+
+    console.log('----------------------------------');
+
+    var dog1 = {
+        name: 'dd',
+        color: 'red',
+        weight: 80,
+        skill: function() {
+            console.log('汪汪汪');
+        }
+    }
+    console.log(dog1.color);
+    console.log(dog1.name);
+    console.log(dog1.weight);
+    dog1.skill();
+</script>
+
+<body>
+
+</body>
+
+</html>

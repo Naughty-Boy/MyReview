@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>清除间隔计时</title>
+</head>
+
+<body>
+    <button class="open">开启</button>
+    <button class="close">关闭</button>
+    <script>
+        // 获取事件源
+        var begin = document.querySelector('.open')
+        var close = document.querySelector('.close')
+        var time = null //设置一个空对象接收time
+            // 事件类型 事件处理
+        begin.addEventListener('click', function() {
+            time = setInterval(function() {
+                console.log('计时开始了');
+            }, 1000)
+        })
+        close.addEventListener('click', function() {
+            clearInterval(time) //clearInterval 清除间隔计时
+        })
+    </script>
+</body>
+
+</html>

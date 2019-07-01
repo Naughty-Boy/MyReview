@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>排他思想</title>
+    <style>
+        .col {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+        // 获取事件
+        var btns = document.querySelectorAll('button')
+        for (var i = 0; i < btns.length; i++) {
+            // 当鼠标点击第i个元素的时候
+            btns[i].onclick = function() {
+                for (var j = 0; j < btns.length; j++) {
+                    // 数组中所有的元素类名为空
+                    btns[j].className = ''
+                }
+                // 再给点击的这个元素添加类名
+                this.className = 'col'
+            }
+        }
+       
+    </script>
+</body>
+
+</html>

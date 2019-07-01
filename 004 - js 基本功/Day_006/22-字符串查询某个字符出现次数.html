@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 因为indexOf 只能查找到第一个，所以后面的查找，一定是当前索引加1，从而继续查找
+        var str = 'cacvvvmwkvwovnojnvsdd';
+        var index = str.indexOf('v');
+        var num = 0;
+        while (index !== -1) {
+            console.log(index);
+            num++;
+            index = str.indexOf('v', index + 1);
+        }
+        console.log('v出现的次数是：' + num);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

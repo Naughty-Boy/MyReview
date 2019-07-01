@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修改样式</title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            background: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script>
+        // 1 获取事件源
+        var div = document.querySelector('div')
+
+        // 2事件类型(触发方法)   3事件处理(执行操作)
+        div.onclick = function() {
+            this.style.background = 'skyblue' //this代表操作事件的事件源
+                // 修改后是行内样式 权重比较大
+        }
+    </script>
+</body>
+
+</html>

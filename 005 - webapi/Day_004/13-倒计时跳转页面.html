@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时跳转</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 获取事件源
+        var div = document.querySelector('div')
+            // 事件类型  事件处理
+        var time = 5
+
+        function times() {
+            if (time == 0) { //如果时间等于0 执行链接地址跳转
+                location.href = 'http://www.baidu.com'
+            } else {
+                div.innerHTML = '距离跳转还有' + time + '秒' //如果时间不是0 时间递减
+                time--
+            }
+        }
+        times() //提前调用一次函数 防止回调函数异步处理等待
+        setInterval(times, 1000) //每一秒钟执行一次函数
+    </script>
+</body>
+
+</html>

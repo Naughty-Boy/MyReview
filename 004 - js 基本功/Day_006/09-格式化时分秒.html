@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //打印出时分秒
+        var time = new Date();
+        console.log(time.getHours());
+        console.log(time.getMinutes());
+        console.log(time.getSeconds());
+        //使用函数封装，调用输出时间
+        function getTimer() {
+            var time = new Date();
+            var h = time.getHours();
+            // h = h >= 10 ? h : '0' + h;
+
+            // padStart(2, 0)用于字符串补位，使用前要先转换
+            h = h.toString().padStart(2, 0);
+
+
+            var m = time.getMinutes();
+            m = m >= 10 ? m : '0' + m;
+            var s = time.getSeconds();
+            s = s >= 10 ? s : '0' + s;
+            // return '当前时间为' + h + ':' + m + ':' + s;
+            // ${}里边只放变量
+            return `${h}:${m}:${s}`
+
+        }
+        console.log(getTimer());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

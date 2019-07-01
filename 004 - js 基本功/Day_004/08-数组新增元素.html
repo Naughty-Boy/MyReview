@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 1. 新增数组元素 修改length长度 
+        var arr = ['pink', 'red', 'green', 'blue'];
+        console.log(arr.length, arr);
+        arr.length = 6;
+        console.log(arr);
+        console.log(arr[4]); //undefine
+        console.log(arr[5]); //undefine
+
+
+
+        // 2. 新增数组元素 修改索引号 追加数组元素
+        var arr1 = ['pink', 'red', 'green', 'blue'];
+        console.log(arr1);
+        arr1[4] = 'hotpink'; //直接追加
+        console.log(arr1);
+        arr1[0] = 'skyble'; //覆盖
+        console.log(arr1);
+        arr1 = '哈哈'; //直接给数组赋值，数组元素没有了。
+        console.log(arr1);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

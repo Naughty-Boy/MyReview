@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            background-color: skyblue;
+            width: 200px;
+            height: 200px;
+            /* position: absolute; */
+            /* left: 50%; */
+            /* transform: translateX(-50%); */
+            margin: 0 auto;
+            top: 25%;
+            border: 10px solid gray;
+            display: none;
+        }
+        
+        span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translate(50%, -50%);
+            padding: 10px;
+            border-radius: 50%;
+            background-color: red;
+            overflow: hidden;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button>弹框</button>
+    <div>
+        <span>X</span>
+        <p></p>
+    </div>
+</body>
+
+</html>
+<script>
+    var btn = document.querySelector('button');
+    var div = document.querySelector('div');
+    var span = document.querySelector('span');
+    var p = document.querySelector('p')
+    btn.addEventListener('click', function(e) {
+        div.style.display = "block";
+    })
+    span.addEventListener('click', function() {
+        div.style.display = "none";
+    })
+    div.addEventListener('mousedown', function(e) {
+        var ev = e || event;
+        p.innerText = '当前鼠标X坐标：' + ev.pageX + ' Y坐标：' + ev.pageY;
+        //鼠标在盒子中的坐标
+        var left = ev.pageX - this.offsetLeft;
+        var top = ev.pageY - this.offsetTop;
+        console.log(left, top)
+
+        function move(e) {
+            var ev = e || event;
+            div.style.position = 'absolute';
+            div.style.left = ev.pageX - left + 'px';
+            div.style.top = ev.pageY - top + 'px';
+        }
+        div.addEventListener('mousemove', move);
+        div.addEventListener('mouseup', function() {
+            div.removeEventListener('mousemove', move)
+        })
+    })
+</script>

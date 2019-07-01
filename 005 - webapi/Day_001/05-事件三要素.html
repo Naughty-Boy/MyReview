@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三要素</title>
+</head>
+
+<body>
+    <button id="btn">唐伯虎</button>
+    <script>
+        // 想要点击按钮弹出对话框
+        //  一个事件是由三部分组成  事件源  事件类型(触发条件)  事件处理(执行操作)
+        // 1 事件源  事件被触发的对象 也就是获取这个对象
+        var btn = document.getElementById('btn')
+            // 2 事件类型  也就是触发条件  鼠标点击触发 onclick
+            // 3 事件处理 点击后触发的表现 通过函数赋值完成
+        btn.onclick = function() {
+            alert('点秋香')
+        }
+    </script>
+</body>
+
+</html>

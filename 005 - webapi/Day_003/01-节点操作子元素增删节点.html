@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增删子节点</title>
+</head>
+
+<body>
+    <button>删除</button>
+    <ul>
+        <li>熊大</li>
+        <li>熊二</li>
+        <li>光头强</li>
+    </ul>
+    <script>
+        // 1 获取事件
+        var btn = document.querySelector('button')
+        var ul = document.querySelector('ul')
+            // 事件类型 事件处理
+        btn.onclick = function() {
+            if (ul.children.length == 0) {
+                this.disabled = true
+            } else {
+                ul.removeChild(ul.children[0])
+            }
+        }
+    </script>
+</body>
+
+</html>

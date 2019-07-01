@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .color {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one two"></div>
+    <button> 开关灯</button>
+</body>
+
+</html>
+<script>
+    //获取元素
+    var div = document.querySelector('div');
+    // classList获取类名列表
+    // console.log(div.classList[1]);
+    //向列表中添加
+    div.classList.add('three');
+    //从列表中移除
+    div.classList.remove('one');
+    //点击切换
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function() {
+        document.body.classList.toggle('color');
+    })
+</script>

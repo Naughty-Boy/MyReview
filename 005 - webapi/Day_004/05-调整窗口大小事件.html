@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>窗口变化事件</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 事件类型 页面全部加载完成执行
+        window.addEventListener('load', function() {
+            // 获取事件
+            var div = document.querySelector('div')
+                // 事件类型  resize变化窗口大小触发
+            window.addEventListener('resize', function() {
+                if (window.innerWidth < 1000) { //window.innerWidth获取当前浏览器窗口宽度
+                    div.style.display = 'none'
+                } else {
+                    div.style.display = 'block'
+                }
+            })
+        })
+    </script>
+    <div></div>
+</body>
+
+</html>

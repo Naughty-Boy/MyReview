@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+</head>
+<input type="text">
+
+<body>
+    <script>
+        // 1  onkeyup  键盘弹起触发
+        document.onkeyup = function() {
+                console.log('键盘弹起');
+            }
+            // 2 onkeydown 键盘按下触发
+        document.addEventListener('keydown', function() { //事件监听不需要添加on
+                console.log('键盘按下down');
+            })
+            //  onkeypress 键盘按下触发  不识别 shift Ctrl   
+        document.addEventListener('keypress', function() {
+            console.log('键盘按下press');
+        })
+
+        // 3执行顺序    onkeydown  onkeypress onkeyup
+        // 4 keyCode 获取键盘事件对象中相应的 ASCII码值
+        document.addEventListener('keydown', function(e) { // onkeydown和onkeyup不区分大小写
+            console.log(e.keyCode);
+        })
+        document.addEventListener('keypress', function(e) { // onkeypress区分大小写
+            console.log(e.keyCode);
+        })
+    </script>
+</body>
+
+</html>

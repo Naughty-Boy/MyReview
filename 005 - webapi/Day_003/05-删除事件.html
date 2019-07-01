@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>删除事件</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            background-color: skyblue;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <script>
+        // 事件源
+        var boxs = document.querySelectorAll('div')
+            // 1 传统方式删除事件
+        boxs[0].onclick = function() {
+                alert('弹出框')
+                boxs[0].onclick = null //删除onclick事件
+            }
+            // 2 监听注册方式删除事件
+        boxs[1].addEventListener('click', fn) //不是执行函数  而是调用函数
+        function fn() {
+            alert('弹出框')
+            boxs[1].removeEventListener('click', fn) //删除监听事件
+        }
+    </script>
+</body>
+
+</html>

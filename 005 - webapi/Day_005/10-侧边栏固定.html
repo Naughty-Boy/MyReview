@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        
+        .container {
+            width: 800px;
+            margin: 20px auto;
+        }
+        
+        .slider>span {
+            display: none;
+            bottom: 0;
+        }
+        
+        .first {
+            height: 200px;
+            background-color: skyblue;
+        }
+        
+        .second {
+            height: 300px;
+            background-color: lightgreen;
+        }
+        
+        .third {
+            height: 1000px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <span class="back">回到顶部</span>
+    </div>
+    <div class="first container">one</div>
+    <div class="second container">two</div>
+    <div class="third container">three</div>
+    <script>
+        //获取元素
+        var sliderbar = document.querySelector('.slider');
+        var second = document.querySelector('.second');
+        // 获取second上偏移的距离
+        var secondTop = second.offsetTop
+            //侧边栏向上距离second的部分大小
+        var sliderbarTop = sliderbar.offsetTop - secondTop;
+        // 获取third 主体元素
+        var third = document.querySelector('.third');
+        var back = document.querySelector('.back');
+        var thirdTop = third.offsetTop;
+        // 2. 页面滚动事件 scroll
+        document.addEventListener('scroll', function() {
+            //页面向上滚动的头部大于等于了secondTop
+            if (window.pageYOffset >= secondTop) {
+                sliderbar.style.position = 'fixed';
+                sliderbar.style.top = sliderbarTop + 'px';
+            } else {
+                sliderbar.style.position = 'absolute';
+                sliderbar.style.top = '300px';
+            }
+            // 页面向上滚动到thirdTop时
+            if (window.pageYOffset >= thirdTop) {
+                back.style.display = 'block';
+            } else {
+                back.style.display = 'none';
+            }
+
+        })
+    </script>
+</body>
+
+</html>

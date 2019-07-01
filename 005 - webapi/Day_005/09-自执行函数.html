@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //自执行函数又称为沙箱，防止变量名污染。
+    //同时可以借用参数传入的方式向外暴露成员
+    // (function() {
+    //     var a = 'a';
+    // })();
+    // console.log(a)  //外部访问不到
+    (function(window) {
+        var a = 'a';
+        window.a = a;
+    })(window);
+    console.log(a) //可以访问
+</script>

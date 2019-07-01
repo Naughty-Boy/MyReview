@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建添加节点</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+    </ul>
+    <script>
+        // 获取事件
+        var ul = document.querySelector('ul')
+            // 1 创建节点元素  createElement
+        var li = document.createElement('li') //创建节点元素li
+            // 2 添加节点 node.appendChild(child) node父级 child是创建节点元素  在后面添加
+        ul.appendChild(li)
+            // 2 添加节点 指定位置 node.insertBefore(child, 位置)
+        var lis = document.createElement('li') //创建元素节点
+        ul.insertBefore(lis, ul.children[0]) //在ul子元素的第0个位置添加
+            // 两步 1 创建元素节点 2 把元素节点添加到知道位置
+    </script>
+</body>
+
+</html>

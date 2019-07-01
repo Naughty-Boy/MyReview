@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+
+
+        // 要求用户猜 1~10之间的一个数字 但是只有 3次猜的机会
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var random = getRandom(1, 10);
+        var count = 0;
+        while (true) {
+            var num = prompt('猜1-10之间的数，只有三次机会');
+
+            if (num > random) {
+                alert('大了')
+            } else if (num < random) {
+                alert('小了');
+            } else {
+                alert('对了');
+                break;
+            }
+            count++;
+            if (count >= 3) {
+                alert('次数用完了')
+                break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

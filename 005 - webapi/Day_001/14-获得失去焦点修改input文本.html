@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获得失去焦点</title>
+    <style>
+        input {
+            display: block;
+            margin: 200px auto;
+            height: 50px;
+            width: 300px;
+            font-size: 20px;
+            color: #999;
+            border: 2px solid skyblue;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value="爆款手机">
+    <script>
+        var inp = document.querySelector('input')
+        inp.onfocus = function() { //获得焦点
+            if (inp.value == '爆款手机') {
+                inp.value = ''
+            }
+            inp.style.color = '#000'
+        }
+        inp.onblur = function() { //失去焦点
+            if (inp.value == '') {
+                inp.value = '爆款手机'
+            }
+            inp.style.color = '#999'
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册事件</title>
+</head>
+
+<body>
+    <button>1</button>
+    <button>2</button>
+    <script>
+        var btn = document.querySelectorAll('button')
+            // 1  传统方式注册事件 没有兼容问题  但是有唯一性
+        btn[0].onclick = function() {
+            alert('第一次按按钮一')
+        }
+        btn[0].onclick = function() {
+            alert('第二次按按钮一') //只会弹出第二次  后面的把前面的覆盖
+        }
+
+        // 2 事件监听方式注册事件   有兼容问题  但是可以添加多个事件
+        btn[1].addEventListener('click', function() {
+            alert('第一次点击按钮二')
+        })
+        btn[1].addEventListener('click', function() {
+            alert('第二次点击按钮二')
+        })
+    </script>
+</body>
+
+</html>

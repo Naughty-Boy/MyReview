@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+        }
+        
+        p {
+            position: absolute;
+            left: 0;
+            top: 200px;
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn1">动画1</button>
+    <button class="btn2">动画2</button>
+    <p>大帅哥</p>
+</body>
+
+</html>
+<script>
+    //先获取元素
+    var p = document.querySelector('p');
+    var btn1 = document.querySelector('.btn1');
+    var btn2 = document.querySelector('.btn2');
+
+    function animate(obj, target) {
+        // 先清除定时器，防止重叠
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function() {
+            //目标和判断
+            var step = (target - obj.offsetLeft) / 10;
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            if (obj.offsetLeft == target) {
+                // 达到目标停止
+                clearInterval(obj.timer);
+            }
+            obj.style.left = obj.offsetLeft + step + 'px';
+
+        }, 15);
+    }
+
+    btn1.addEventListener('click', function() {
+        // 调用函数
+        animate(p, 500);
+    })
+    btn2.addEventListener('click', function() {
+        // 调用函数
+        animate(p, 800);
+    })
+</script>

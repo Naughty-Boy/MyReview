@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>循环精灵图</title>
+    <style>
+        ul {
+            width: 150px;
+            height: 200px;
+            margin: 100px auto;
+        }
+        
+        li {
+            float: left;
+            width: 24px;
+            height: 24px;
+            margin: 10px;
+            background-color: pink;
+            list-style: none;
+            background: url(images/sprite.png) no-repeat;
+            background-position-y: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        var lis = document.querySelectorAll('li') //lis集合是伪数组
+        for (i = 0; i < lis.length; i++) {
+            var index = -44 * i //每循环一次index的值都会增加44
+            lis[i].style.backgroundPositionY = index + 'px'
+                // 数组第i个元素的背景位置坐标index
+        }
+    </script>
+</body>
+
+</html>

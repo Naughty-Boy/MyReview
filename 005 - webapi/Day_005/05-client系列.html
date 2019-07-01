@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>client</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .father {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+            margin: 100px;
+        }
+        
+        .son {
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: skyblue;
+            padding: 20px;
+            border: 10px solid aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father')
+        var son = document.querySelector('.son')
+            // clientWidth和offsetWidth 最大的区别就是不识别边框
+        console.log(son.offsetWidth); //260
+        console.log(son.clientWidth); //240
+    </script>
+</body>
+
+</html>

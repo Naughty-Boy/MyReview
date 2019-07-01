@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取某些元素</title>
+</head>
+
+<body>
+    <ul>
+        <li>锄禾日当午</li>
+        <li>锄禾日当午</li>
+        <li>锄禾日当午</li>
+        <li>锄禾日当午</li>
+        <li>锄禾日当午</li>
+    </ul>
+    <ul id="gs">
+        <li>汗滴禾下土</li>
+        <li>汗滴禾下土</li>
+        <li>汗滴禾下土</li>
+        <li>汗滴禾下土</li>
+        <li>汗滴禾下土</li>
+    </ul>
+    <script>
+        var lis = document.getElementsByTagName('li')
+            //1 获取过来的对象集合是以伪数组的形式储存的
+        console.log(lis);
+        console.log(lis instanceof Array); //false  不是数组
+        //2 遍历获取的对象集合 依次打印里面的元素对象
+        for (i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+        //3 element.getElementByTagName()  element元素 可以得到这个元素中的标签
+        var lb = document.getElementById('gs')
+        var lbgs = lb.getElementsByTagName('li')
+        console.log(lbgs);
+    </script>
+</body>
+
+</html>
