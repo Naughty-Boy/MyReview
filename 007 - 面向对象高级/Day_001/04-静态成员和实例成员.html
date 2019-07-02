@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //构造函数
+    function Person(name, age) {
+        //在构造函数中为this添加的属性成为实例成员
+        this.name = name;
+        this.age = age;
+        this.say = function() {
+            console.log(this.name, this.age);
+        }
+    }
+    //静态成员就是直接为构造器添加属性，就不需要通过对象来调用，构造函数直接可以调用
+    Person.speak = function() {
+        console.log('hello World!');
+        //this就是函数本身
+        console.log(this)
+    }
+    Person.title = '我是静态成员';
+
+
+    // 实例化一个对象
+    var per = new Person('周杰棍', 24);
+    //调用实例成员
+    per.say();
+    //调用静态成员
+    // per.speak();  //报错，is not a function
+    // 直接使用构造函数来调用静态成员
+    Person.speak(); //成功打印
+</script>

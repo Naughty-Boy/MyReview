@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //第一种方式---直接new Object
+    var star = new Object();
+    star.name = 'JJ';
+    star.song = '三国';
+    star.action = function() {
+        console.log(this.name + '正在演唱' + this.song);
+    }
+    star.action();
+    //第二种方式---字面量声明对象的方式
+    var star2 = {
+        name: '周德华',
+        song: '刘星驰',
+        action: function() {
+            console.log(this.name + '正在演唱' + this.song);
+        }
+    }
+    star2.action();
+    //第三种方式--工厂模式
+    function CreateStar(name, song) {
+        //创建一个空对象
+        var obj = new Object();
+        obj.name = name;
+        obj.song = song;
+        obj.action = function() {
+                console.log(this.name + '正在演唱' + this.song);
+            }
+            //返回这个对象
+        return obj;
+    }
+    var star3 = CreateStar('周杰棍', '双杰伦');
+    star3.action();
+    //通过工厂函数创建出来的对象，构造函数全部指向的是Object
+    //并且我们无法通过构造函数或者instancof来判断某个对象是否属于指定的构造器实例
+    console.dir(star3)
+</script>
