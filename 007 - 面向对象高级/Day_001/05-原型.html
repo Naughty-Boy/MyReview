@@ -18,9 +18,34 @@
     function Person(name, age) {
         this.name = name;
         this.age = age;
-
+        // 这种方式导致了每个实例对象都要开辟一个空间来存放方法
+        // 就好比足球运动员参加比赛每个人都拿着一个球一样
         this.speak = function() {
-            console.log('五彩斑斓的黑');
+            console.log(this.name, this.age);
         }
     }
+    var student = new Person('吴彦祖', 24);
+    var student2 = new Person('彭于晏', 23);
+    student.speak();
+    student2.speak();
+
+    //使用原型对象添加方法
+    function Star(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    //构造函数中有一个对象属性，实例对象可以访问到它的属性和方法
+    Star.prototype.sing = function() {
+        console.log(this.name + '正在唱歌');
+    }
+    var star1 = new Star('周杰棍', 24);
+    var star2 = new Star('JJ', 23);
+    // 成功调用，只有在构造函数中已经存在了该属性或方法，不然会通过__proto__一级级向上查找
+    // 实例对象包含__proto__属性，指向的就是构造函数中的原型对象
+    // 因为__proto__是一个非标准的写法，所以使用构造函数.prototype
+    console.log(star1.__proto__ === Star.prototype) //true
+        //原型对象上有一个构造函数属性constructor指向的就是构造函数本身
+    console.log(Star.prototype.constructor === Star); //true
+    star1.sing();
+    star2.sing();
 </script>
