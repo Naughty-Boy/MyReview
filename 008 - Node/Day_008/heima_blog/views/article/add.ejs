@@ -1,0 +1,54 @@
+<%- include('../layout/header.ejs') %>
+    <!-- 引入富文本插件 -->
+    <link rel="stylesheet" href="../../node_modules/mditor/dist/css/mditor.min.css">
+    <script src="../../node_modules/mditor/dist/js/mditor.min.js"></script>
+    <!-- 内容板块 -->
+    <div class="container">
+        <h1>发表文章页</h1>
+        <hr>
+        <form id="form">
+            <!-- 在进入文章添加页面的一瞬间，就立即把 文章的 作者Id，保存到 一个隐藏域中，防止 session 失效的问题 -->
+            <input type="hidden" name="authorId" value="<%= user.id %>">
+            <div class="form-group">
+                <label>文章标题：</label>
+                <input type="text" name="title" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>文章内容：</label>
+                <textarea name="content" class="form-control" id="editor"></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="发表文章" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <script>
+        // 初始化富文本插件
+        var mditor = Mditor.fromTextarea(document.getElementById('editor'));
+
+        //获取或设置编辑器的值
+        // mditor.on('ready', function() {
+        //     console.log(mditor.value);
+        //     mditor.value = '** hello **';
+        // });
+        // 监听表单提交事件，手动发起ajax请求
+        $('#form').on('submit', function(e) {
+            // 取消点击的默认事件
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/article/add",
+                data: $('#form').serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.status != 200) {
+                        alert('发表失败...')
+                    }
+                    location.href = '/article/info/' + response.insertId
+                }
+            });
+        })
+    </script>
+    <%- include('../layout/footer.ejs') %>
