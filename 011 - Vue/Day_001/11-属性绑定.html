@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 默认a标签和href属性 -->
+        <!-- <a href="http://www.baidu.com">百度</a> -->
+        <!-- 通过属性绑定，正常使用 -->
+        <!-- <a v-bind:href="url">百度</a> -->
+        <!-- v-bind指令的简写是一个： -->
+        <a :href="url">百度</a>
+        <!-- 现在添加一个按钮改变url属性 -->
+        <button @click="toggle">切换</button>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            url: 'http://www.baidu.com'
+        },
+        methods: {
+            toggle() {
+                this.url = "http://www.itcast.cn";
+            }
+        }
+    })
+</script>

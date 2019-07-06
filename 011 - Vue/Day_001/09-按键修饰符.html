@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        用户：<input type="text" v-model="user" @keyup.delete="del">
+        <br> 密码：
+        <input type="password" v-model="password" @keyup.enter="submit">
+        <br>
+        <button @click="submit">提交</button>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            user: "",
+            password: ""
+        },
+        methods: {
+            del() {
+                this.user = "";
+            },
+            submit() {
+                console.log(this.user, this.password)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- v-on指令首先需要指定绑定的事件，其次指定事件的处理函数 -->
+        <button v-on:click="show">点我试试</button>
+        <!-- v-on：可以简写，直接替换为@符号即可 -->
+        <button @click="show2">点我呗</button>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!'
+        },
+        methods: {
+            show() {
+                alert('你还真点啊')
+            },
+            show2() {
+                //在methods内部的函数想要访问data中的数据需要通过this
+                alert(this.msg)
+            }
+        }
+    })
+</script>

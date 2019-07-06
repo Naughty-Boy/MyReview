@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .defult {
+            font-size: 28px;
+        }
+        
+        .active {
+            color: red;
+        }
+        
+        .important {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 类名的绑定不会影响已存在的类名 -->
+        <!-- 绑定对象的方式 -->
+        <p class="defult" :class="{active:isActive,important:isImportant}">示例内容</p>
+        <button @click="toggleActive">活动中</button>
+        <button @click="toggleImportant">重要</button>
+        <hr>
+        <!-- 绑定数组的方式 -->
+        <p :class="[isActive2,isImportant2]">示例内容2</p>
+        <button @click=toggle>切换</button>
+        <!-- 组合使用 -->
+        <p :class="[isActive2,{important:isImportant}]">示例内容3</p>
+        <!-- 引用数组 -->
+        <p :class="arr">示例内容4</p>
+        <!-- 引用对象 -->
+        <p :class="obj">示例内容5</p>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: false,
+            isImportant: false,
+            isActive2: 'active',
+            isImportant2: 'important',
+            arr: ['active', 'important'],
+            obj: {
+                important: true,
+                active: true
+            }
+        },
+        methods: {
+            toggleActive() {
+                this.isActive = !this.isActive;
+            },
+            toggleImportant() {
+                this.isImportant = !this.isImportant;
+            },
+            toggle() {
+                if (this.isActive2) {
+                    this.isActive2 = null;
+                    this.isImportant2 = null;
+                } else {
+                    this.isActive2 = 'active';
+                    this.isImportant2 = 'important';
+                }
+            }
+        }
+    })
+</script>

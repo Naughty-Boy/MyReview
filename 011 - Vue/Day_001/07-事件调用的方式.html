@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 直接写入一个函数的引用，默认传入的是事件对象 -->
+        <button @click="show">按钮1</button>
+        <!-- 在有参的绑定事件中想要传入事件对象，需要传入$event -->
+        <button @click="show2($event,1,2)">按钮2</button>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!'
+        },
+        methods: {
+            show(a) {
+                console.log(a)
+            },
+            show2(a, b, c) {
+                console.log(a, b, c)
+            }
+        }
+    })
+</script>

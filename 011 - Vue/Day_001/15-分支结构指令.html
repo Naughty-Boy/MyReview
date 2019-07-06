@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 分支结构指令v-if，为false的时候标签不进行渲染,可以为一条表达式或者一个data变量 -->
+        <p v-if="score>90">成绩很好</p>
+        <!-- 分支指令v-else-if，必须跟在v-if的后面 -->
+        <p v-else-if="score>60">成绩还行</p>
+        <!-- 分支指令v-else必须跟在v-if、v-else-if后面 -->
+        <p v-else>成绩很差</p>
+        <hr>
+        <!-- v-show展示也隐藏使用的是样式隐藏(display：none;),即使不需要展示的标签也会进行渲染 -->
+        <p v-show="flag">是否展示</p>
+        <!-- v-show后面无法跟v-else-if、v-else -->
+        <!-- <p v-else>嘿嘿</p> -->
+        <!-- v-if和v-show的取舍在于是否需要做大量的渲染，在这种情况下v-show有很大开销，但是频繁展示的话v-if好一些 -->
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            score: 90,
+            flag: false
+        }
+    })
+</script>

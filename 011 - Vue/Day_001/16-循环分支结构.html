@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <h2>今日水果售卖列表</h2>
+        <ul>
+            <!-- v-for循环遍历指令，参数单一的话表示一个元素，两个的话表示元素和索引 -->
+            <!-- key表示给元素添加唯一表示，因为vue为了提高性能会重复使用元素，为了避免渲染结果出错，要添加绑定key属性值 -->
+            <li v-for="(item,index) in fruist" :key="index">{{index}}---{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 遍历对象 -->
+            <li v-for="(value,key,index) in obj">{{index}}--{{key}}--{{value}}</li>
+        </ul>
+        <ul>
+            <!-- v-for结合v-if -->
+            <li v-for="(value,index) in all" v-if="value.age>21">{{index}}--{{value.name}}--{{value.age}}</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            fruist: ['苹果', '橘子', '香蕉', '柚子', '甜瓜'],
+            obj: {
+                name: 'list',
+                age: 24,
+                gender: 'man'
+            },
+            all: [{
+                name: 'list',
+                age: 24,
+                gender: 'man'
+            }, {
+                name: 'sdm',
+                age: 21,
+                gender: 'women'
+            }, {
+                name: 'zmq',
+                age: 21,
+                gender: 'women'
+            }]
+        }
+    })
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 动态绑定样式 -->
+        <p :style="{color:color,fontSize:fontSize,opacity:opacity}">Hello Vue</p>
+        <!-- 直接绑定对象 -->
+        <p :style="obj">Hello Vue</p>
+        <!-- 绑定多个对象 -->
+        <!-- 本质上不冲突，但后面的对象带有重复样式时，会将前面的对象层叠掉 -->
+        <p :style="[obj,obj2]">Hello Vue</p>
+        <!-- 普通行内和绑定样式对象 -->
+        <!-- 和绑定多个对象相同，本质互不影响，但重复的样式会被后面的层叠掉 -->
+        <p style="color:green;border:10px solid red;" :style="obj">Hello Vue</p>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            color: 'red',
+            fontSize: '28px',
+            opacity: .5,
+            obj: {
+                backgroundColor: 'skyblue',
+                border: '1px solid gray'
+            },
+            obj2: {
+                backgroundColor: 'orange',
+                fontSize: '28px'
+            }
+        }
+    })
+</script>

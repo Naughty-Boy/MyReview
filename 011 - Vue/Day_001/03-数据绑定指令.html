@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-text需要就收参数，并且以字符串来解析，并不会发生闪烁现象 -->
+        <p v-text="msg"></p>
+        <!-- v-html需要接收参数，并且以html来解析，并不会发生闪烁现象，但是敏感的地方慎用，可能导致攻击 -->
+        <p v-html="msg2"></p>
+        <!-- v-pre指令会使当前的标签停止解析，保留原始状态 -->
+        <p v-pre>{{msg}}</p>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!',
+            msg2: '<h2>Hello Vue</h2>'
+        }
+    })
+</script>

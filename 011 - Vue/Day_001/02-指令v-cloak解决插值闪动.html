@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 2.通过属性选择器选择使用插值的标签，默认样式为display:none;在数据渲染成功后会自动显示 */
+        
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.为标签添加v-cloak指令 -->
+    <div id="app" v-cloak>
+        {{msg}}
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "Hello World"
+        }
+    })
+</script>

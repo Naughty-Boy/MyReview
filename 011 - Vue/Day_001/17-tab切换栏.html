@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            overflow: hidden;
+            list-style: none;
+        }
+        
+        li {
+            float: left;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .active {
+            font-weight: bold;
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- tab切换栏 -->
+        <div class="tab">
+            <ul>
+                <li v-for="(item,index) in obj" :key="index" @click="toggle(index)" :class="currentIndex==index?'active':''">{{item.title}}</li>
+            </ul>
+            <div v-for="(item,index) in obj" :key="index" v-if="currentIndex==index"><img :src="item.img" alt=""></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            // 提取模板中的数据
+            currentIndex: 0,
+            obj: [{
+                id: 0,
+                title: '海贼王1',
+                img: './img/1.jpg'
+            }, {
+                id: 1,
+                title: '海贼王2',
+                img: './img/2.jpg'
+            }, {
+                id: 2,
+                title: '海贼王3',
+                img: './img/3.jpg'
+            }]
+        },
+        methods: {
+            toggle(index) {
+                // 选项卡的索引切换
+                this.currentIndex = index;
+            }
+        }
+    })
+</script>
