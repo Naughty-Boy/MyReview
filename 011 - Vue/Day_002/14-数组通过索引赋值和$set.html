@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="change">改变数组内容</button>
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="(item,index) in arr" :key="index">{{item}}</li>
+        </ul>
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(value,key,index) in obj" :key="index">{{index}}--{{key}}--{{value}}</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [1, 2, 3],
+            obj: {
+                name: 'list',
+                age: 24,
+                gender: 'man'
+            }
+        },
+        methods: {
+            change() {
+                //尝试通过索引的方式访问数组成员并改变
+                // this.arr[0] = 'ok';
+                // 打印成功，但是数据没有和视图同步响应
+                // console.log(this.arr)
+                // 使用$set访问
+                // $set是vue提供的api，第一个参数是要改变的对象，第二个参数为索引/key值，第三个参数为索引对应的元素/value
+                this.$set(this.arr, 0, 'ok');
+                // 通过key值得方式访问对象
+                this.obj['name'] = "施瓦星格";
+                //成功，视图也能响应
+                console.dir(this.obj)
+                    // 尝试使用$set改变一个对象
+                    // 成功
+                this.$set(this.obj, 'age', 18)
+            }
+        }
+    })
+</script>

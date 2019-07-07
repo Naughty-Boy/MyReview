@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 使用自定义指令 -->
+        <input type="text" v-danger>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    // Vue自定义指令
+    // 第一个参数为指令名称，但是在使用时需要加上v-前缀
+    Vue.directive('danger', {
+        // 常用钩子函数，保留一个参数表示绑定的标签元素
+        inserted(el) {
+            el.style.border = '1px solid red';
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!'
+        }
+    })
+</script>

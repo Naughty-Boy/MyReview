@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 假设有一个需求需要将一个变量的字符串翻转 -->
+        <!-- 普通写入插值表达式做法 -->
+        <!-- 缺点：直接在插值中写入表达式，会使模板可读性降低 -->
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <!-- 调用函数的做法 -->
+        <!-- 缺点：每次使用到该函数的时候都会进行运算，比较冗余和消耗性能 -->
+        <p>{{strReverse(msg)}}</p>
+        <!-- 使用计算属性，直接当做普通属性来用即可 -->
+        <!-- 优点：计算属性会将结果缓存起来，在需要的地方直接引用。在内部引用的变量发生变化是会自动更新 -->
+        <p>{{msgReverse}}</p>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!'
+        },
+        methods: {
+            strReverse(str) {
+                return str.split('').reverse().join('');
+            }
+        },
+        // 计算属性
+        computed: {
+            msgReverse() {
+                // 计算属性需要有返回值
+                return this.msg.split('').reverse().join('');
+            }
+        }
+    })
+</script>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 600px;
+            margin: 0 auto;
+        }
+        
+        table {
+            margin: 20px auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: orange;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <label>编号： <input type="text" v-model="number" :disabled="flag"></label>
+            <label>姓名： <input type="text" v-model="name"></label>
+            <button @click="add">添加</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in arr" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.ctime}}</td>
+                    <td>
+                        <a href="javascript:;" @click.prevent="edit(index,item.id,item.name)">修改</a>|
+                        <a href="javascript:;" @click.prevent="del($event,index)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            // id和姓名
+            number: '',
+            name: '',
+            // 是否禁用标记
+            flag: false,
+            // 列表数组
+            arr: [{
+                id: 0,
+                name: "张飞",
+                ctime: "2017-6-4"
+            }, {
+                id: 1,
+                name: "关羽",
+                ctime: "2018-7-3"
+            }]
+        },
+        methods: {
+            add() {
+                // 先判断是否是修改还是添加
+                if (this.flag) {
+                    //修改
+                    this.arr.forEach((item, index) => {
+                        if (item.id == this.number) {
+                            this.$set(item, 'name', this.name);
+                        }
+                    })
+                    this.flag = false;
+                    this.number = '';
+                    this.name = "";
+                } else {
+                    // 添加
+                    let id, name;
+                    id = this.number;
+                    name = this.name;
+                    // 向数组添加对象
+                    this.arr.push({
+                            id,
+                            name
+                        })
+                        // 清空
+                    this.number = "";
+                    this.name = "";
+                }
+            },
+            del(e, index) {
+                this.arr.splice(index, 1);
+            },
+            edit(index, id, name) {
+                this.number = id;
+                this.name = name;
+                this.flag = true;
+            }
+        }
+    })
+</script>

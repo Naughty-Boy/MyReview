@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <label>请输入数据： <input type="text" v-model="value"> <button @click="add">添加</button></label>
+        <ul>
+            <li v-for="(item,index) in arr" :key="index">
+                {{index}}--{{item}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            value: "",
+            arr: []
+        },
+        methods: {
+            add() {
+                //数组的pop()、push()、shift()、unshift()、splice()、sort()、reverse()都是改变数组的本身，数据是响应式的
+                // 数组的filter()、concat()、slice()是返回一个新数组，需要将其赋值给原数组才能触发响应
+                this.arr.unshift(this.value);
+                this.value = ""
+            }
+        }
+    })
+</script>

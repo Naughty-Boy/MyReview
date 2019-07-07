@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <!-- 使用自定义指令 -->
+        <!-- 绑定的指令中直接传入字符串需要用单引号包裹，不然会作为变量向data中查找 -->
+        <input type="text" v-color="'orange'">
+        <!-- 对于驼峰写法的指令名称，在模板中需要使用连字符隔开 -->
+        <input type="text" v-font-size="38">
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World!'
+        },
+        // 局部注册指令，和全局不同的是directive要加s
+        directives: {
+            color: {
+                inserted(el, binding) {
+                    el.style.color = binding.value;
+                }
+            },
+            //局部指令对象中可以有多个指令
+            fontSize: {
+                inserted(el, binding) {
+                    el.style.fontSize = binding.value + 'px'
+                }
+            }
+        }
+    })
+</script>

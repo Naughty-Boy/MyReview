@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <p>{{msg}}</p>
+        <button @click="update">改变msg的值</button>
+        <button @click="destroy">销毁组件</button>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: ''
+        },
+        methods: {
+            update() {
+                this.msg = 'ok'
+            },
+            destroy() {
+                this.$destroy()
+            }
+        },
+        // 声明周期钩子函数
+        beforeCreate() {
+            console.log('beforeCreate执行了')
+        },
+        created() {
+            console.log('created执行了')
+        },
+        beforeMount() {
+            console.log('beforeMount执行了')
+        },
+        mounted() {
+            console.log('mounted执行了')
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate执行了')
+        },
+        updated() {
+            console.log('updated执行了')
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy执行了')
+        },
+        destoryed() {
+            console.log('destoryed执行了')
+        }
+    })
+</script>

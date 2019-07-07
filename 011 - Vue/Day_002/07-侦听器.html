@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <p>姓： <input type="text" v-model="firstName"></p>
+        <p>名： <input type="text" v-model="lastName"></p>
+        <p>名字全称：{{fullName}}</p>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: "Li",
+            lastName: "Wenyao",
+            fullName: ""
+        },
+        // 侦听器和计算属性的区别，除了不需要写返回值之外，watch还可以做一些开销比较大的异步请求
+        watch: {
+            // 要侦听的属性：
+            firstName(value) {
+                //不需要return，直接写要操作的代码
+                this.fullName = value + ' ' + this.lastName;
+            },
+            lastName(value) {
+                //通过侦听属性的变化来改变fullName
+                this.fullName = this.firstName + ' ' + value;
+            }
+        }
+    })
+</script>

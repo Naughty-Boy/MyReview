@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        {{ date | format('YYYY-MM-DD')}}
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    Vue.filter('format', (val, str) => {
+        // console.log(typeof val)  //Object
+        let result = "";
+        if (str == 'YYYY-MM-DD') {
+            result += val.getFullYear() + '-' + (val.getMonth() + 1) + '-' + val.getDate();
+        }
+        return result;
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            date: new Date()
+        }
+    })
+</script>

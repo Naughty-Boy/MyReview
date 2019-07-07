@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <div>
+            <!-- 表单标签绑定属性，并且将事件改为change(失去焦点的时候触发) -->
+            <label>用户名： <input type="text" v-model.lazy="username">{{tip}}</label>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    // 使用侦听器检测用户名是否合法：
+    // 1.为用户名表单标签绑定属性值
+    // 2.侦听器侦听属性值是否发生变化，并发送异步请求进行验证
+    // 3.将验证结果弹出
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            username: "",
+            tip: ""
+        },
+        methods: {
+            // 模拟请求接口
+            isable(username) {
+                let that = this;
+                setTimeout(function() {
+                    if (username == 'list') {
+                        that.tip = "用户名已存在"
+                    } else {
+                        that.tip = "用户名可以使用"
+                    }
+                }, 2000)
+            }
+        },
+        watch: {
+            username(val) {
+                //调用异步请求进行验证
+                this.isable(val);
+                this.tip = "验证中..."
+            }
+        }
+    })
+</script>

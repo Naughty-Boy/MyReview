@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 表单内容 -->
+        <form action="/">
+            <!-- input输入标签 -->
+            <div>
+                <span>姓名：</span>
+                <span><input type="text" v-model="username"></span>
+            </div>
+            <!-- radio单选按钮 -->
+            <!-- 单选按钮绑定同一个变量，值会在选中时相互切换 -->
+            <div>
+                <span>性别：</span>
+                <span>
+                    <label>
+                        <input type="radio" name="gender" value="男" v-model="gender">男
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="女" v-model="gender">女
+                    </label>
+                </span>
+            </div>
+            <!-- checkbox复选按钮 -->
+            <!-- 复选按钮在绑定一个单纯的变量时候，表示选中和反选切换，多个checkbox需要绑定一个数组 -->
+            <div>
+                <span>爱好：</span>
+                <span>
+                    <label>
+                        <input type="checkbox" name="enjoy" value="游泳" v-model="enjoy">游泳
+                    </label>
+                    <label>
+                        <input type="checkbox" name="enjoy" value="登山" v-model="enjoy">登山
+                    </label>
+                    <label>
+                            <input type="checkbox" name="enjoy" value="田径" v-model="enjoy">田径
+                    </label>
+                </span>
+            </div>
+            <!-- select选择按钮 -->
+            <!-- select如果想要复选的话，标签需要添加multiple属性，并且绑定的变量是一个数组 -->
+            <div>
+                <span>职业：</span>
+                <span>
+                    <select name="job" v-model="job">
+                        <option selected disabled>请选择职业</option>
+                        <option value="程序员">程序员</option>
+                        <option value="警察">警察</option>
+                        <option value="老师">老师</option>
+                    </select>
+                </span>
+            </div>
+            <!-- textarea文本域 -->
+            <div>
+                <span>个人简介：</span>
+                <span><textarea name="myself" v-model="myself"></textarea></span>
+            </div>
+            <!-- 提交按钮 -->
+            <div>
+                <!-- 绑定事件并且取消默认事件 -->
+                <input type="submit" value="提交" @click.prevent="handler">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            gender: '男',
+            enjoy: [],
+            job: '',
+            myself: ''
+        },
+        methods: {
+            // 提交按钮的处理函数
+            handler() {
+                console.log(this.username)
+                console.log(this.gender)
+                console.log(this.enjoy)
+                console.log(this.job)
+                console.log(this.myself)
+            }
+        }
+    })
+</script>
