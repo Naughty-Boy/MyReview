@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 使用全局组件 -->
+        <com>
+            <!-- 指定插槽插入内容 -->
+            <p slot="header">你好吗？</p>
+            <!-- 匿名插入，一并算入匿名插槽-->
+            <p>我很好</p>
+            <p>哈哈哈</p>
+            <!-- 指定插槽插入内容 -->
+            <!-- <p slot="footer">我也很好</p> -->
+            <!-- 当需要为指定插槽插入多个标签时，使用div包裹但是结果是div也会被一并渲染，可以使用template代替div -->
+            <!-- <div slot="footer">
+                <p>我是底部</p>
+                <p>我也是</p>
+            </div> -->
+            <!-- template标签时vue提供的模板标签，不会被渲染进页面中，另外可以配合指令等使用 -->
+            <template slot="footer">
+                <p>我是底部</p>
+                <p>我也是底部</p>
+            </template>
+        </com>
+    </div>
+</body>
+<template id="temp">
+    <div>
+        <h2>我是全局组件com</h2>
+        <!-- 用不同的结构标签将插槽隔开，方便观察 -->
+        <header>
+            <slot name="header"></slot>
+        </header>
+        <main>
+            <!-- 匿名插槽 -->
+            <slot></slot>
+        </main>
+        <footer>
+            <slot name="footer"></slot>
+        </footer>
+    </div>
+</template>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 全局注册组件
+    Vue.component('com', {
+        template: "#temp"
+    })
+    let vm = new Vue({
+        el: '#app'
+    })
+</script>

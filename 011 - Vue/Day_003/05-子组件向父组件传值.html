@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用子组件并且绑定自定义属性和参数,自定义的事件 -->
+        <!-- 绑定自定义事件的时候正常使用@或v-on指令 -->
+        <com :arr="arr" @change="change"></com>
+    </div>
+</body>
+<!-- 子组件的模板 -->
+<template id="temp">
+    <div>
+        <!-- 子组件接收父组件传入的参数并且渲染列表 -->
+        <ul>
+            <li v-for="(item,index) in arr" :key="index">{{item}}</li>
+        </ul>
+        <input type="text" v-model="value">
+        <button @click="add">向父组件添加内容</button>
+    </div>
+</template>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    // 创建组件
+    let com = Vue.extend({
+            template: "#temp",
+            // 接收父组件传入的参数
+            props: ['arr'],
+            data() {
+                return {
+                    value: ""
+                }
+            },
+            methods: {
+                add() {
+                    //使用$emit来触发自定义事件，事件名称为字符串，第二个参数为需要为调用函数传入的实参，只有这两个属性但需要传递多个值时可以传入复杂类型
+                    this.$emit('change', this.value)
+                }
+            }
+        })
+        //创建Vue实例
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [1, 2, 3]
+        },
+        methods: {
+            // 更改属性值得方法
+            // value实参用来接收子组件传入的参数
+            change(value) {
+                this.arr.push(value)
+            }
+        },
+        // 挂载子组件
+        components: {
+            com
+        }
+    })
+</script>

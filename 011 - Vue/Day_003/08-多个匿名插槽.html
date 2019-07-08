@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 使用全局组件 -->
+        <com>
+            <!-- 一个匿名插槽能够插入多个标签,并且会替换到插槽的默认内容 -->
+            <h4>向插槽中插入第一个标签</h4>
+            <h4>向插槽中插入第二个标签</h4>
+            <!-- result：由于匿名插槽有两个，从父组件中传入的标签会被渲染两次 -->
+        </com>
+        <!-- 单纯的引用，会展示插槽的默认内容 -->
+        <com></com>
+    </div>
+</body>
+<!-- 全局组件模板 -->
+<template id="temp">
+    <div>
+        <h2>我是全局组件</h2>
+        <!-- 第一个匿名插槽 -->
+        <slot>
+            <!-- 插槽的默认内容，支持多标签 -->
+            <h4>我是第一个匿名插槽的默认值</h4>
+            <h4>我也是第一个匿名插槽的内容</h4>
+        </slot>
+        <!-- 第二个匿名插槽 -->
+        <slot>
+            我是第二个匿名插槽
+        </slot>
+    </div>
+</template>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 定义一个全局组件
+    Vue.component('com', {
+        template: "#temp"
+    })
+    let vm = new Vue({
+        el: '#app'
+    })
+</script>

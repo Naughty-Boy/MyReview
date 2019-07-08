@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>父组件</h2>
+        <button @click="destroyEvent">销毁自定义事件</button>
+        <!-- 使用全局组件 -->
+        <com1></com1>
+        <com2></com2>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    // 事件中心
+    let vue = new Vue();
+    // 注册全局组件1
+    Vue.component('com1', {
+            template: `
+        <div>
+            <p>com1:{{value}}</p>
+            <button @click="handler">向com2添加数组2</button>    
+        </div>
+        `,
+            data() {
+                return {
+                    value: 0
+                }
+            },
+            methods: {
+                handler() {
+                    // 使用事件中心来触发自定义事件
+                    vue.$emit('com2Add', 1);
+                }
+            },
+            // 声明周期钩子函数
+            mounted() {
+                // 使用事件中心来监听触发的自定义事件
+                vue.$on('com1Add', (value) => {
+                    // console.log(value)
+                    this.value += value;
+                })
+            }
+        })
+        // 注册全局组件2
+    Vue.component('com2', {
+            template: `
+        <div>
+            <p>com2:{{value}}</p>
+            <button @click="handler">向com2添加数组2</button>    
+        </div>
+        `,
+            data() {
+                return {
+                    value: 0
+                }
+            },
+            methods: {
+                handler() {
+                    vue.$emit('com1Add', 2);
+                }
+            },
+            mounted() {
+                vue.$on('com2Add', (value) => {
+                    // console.log(value)
+                    this.value += value;
+                })
+            }
+        })
+        //Vue实例
+    let vm = new Vue({
+        el: "#app",
+        methods: {
+            // 销毁自定义事件
+            destroyEvent() {
+                // 通过事件中心来销毁
+                vue.$off('com1Add');
+                vue.$off('com2Add');
+            }
+        }
+    })
+</script>

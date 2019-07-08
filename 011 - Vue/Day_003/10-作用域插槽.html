@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .important {
+            font-weight: bold;
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 使用全局组件,传递数组 -->
+        <com :arr="arr">
+            <!-- 拿到插槽中暴露的数据 -->
+            <!-- <p slot-scope="slotProps">{{slotProps.info.name}}</p> -->
+            <!-- 同样的，当要进行多标签操作时，使用template标签 -->
+            <template slot-scope="slotProps">
+                <!-- {{slotProps}} -->
+                <span v-if="slotProps.info.id==2" class="important">{{slotProps.info.name}}</span>
+                <span v-else>{{slotProps.info.name}}</span>
+            </template>
+        </com>
+    </div>
+</body>
+<template id="temp">
+    <div>
+      <ul>
+          <li v-for="(item,index) in arr" :key="item.id">
+              <!-- 插槽，并且将要暴露的参数作为自定义属性绑定 -->
+              <slot :info="item"></slot>
+          </li>
+      </ul>
+    </div>
+</template>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 全局注册组件
+    Vue.component('com', {
+        template: "#temp",
+        props: ['arr']
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [{
+                id: 0,
+                name: '苹果'
+            }, {
+                id: 1,
+                name: '橘子'
+            }, {
+                id: 2,
+                name: '香蕉'
+            }]
+        }
+    })
+</script>

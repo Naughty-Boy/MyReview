@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 引用若干个全局组件 -->
+        <!-- 对于驼峰写法的组件名称，在引用时需要使用小写的连字符形式，因为html不区分大小写 -->
+        <my-com></my-com>
+        <my-com></my-com>
+    </div>
+</body>
+<!-- 在外部定义模板标签和内容 -->
+<template type="text/template" id="temp">
+    <!-- 有且只有一个根标签 -->
+    <div>
+        <h2>{{msg}}</h2>
+        <p>{{msg2}}</p>
+    </div>
+</template>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 创建一个组件实例，简写
+    Vue.component('MyCom', {
+        template: "#temp",
+        data() {
+            return {
+                msg: "Hello Component!",
+                msg2: "It's interesting!"
+            }
+        }
+    })
+    let vm = new Vue({
+        el: '#app'
+    })
+</script>

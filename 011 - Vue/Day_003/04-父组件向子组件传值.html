@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue要绑定的视图标签 -->
+    <div id="app">
+        <h2>我是父组件</h2>
+        <!-- 使用全局组件 -->
+        <!-- 绑定父组件上的属性 -->
+        <my-com :name="name" :age="age" :gender="gender"></my-com>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js -->
+<script src="./vue.js"></script>
+<script>
+    // 注册一个全局组件
+    Vue.component('myCom', {
+        template: `<div>
+                全局组件接收父组件传递的值：name:{{Name}}---age:{{age}}---gender:{{gender}}
+            </div>`,
+        data() {
+            return {
+                //为了操作只读的props属性，将props的值赋值给组件的属性
+                Name: this.name
+            }
+        },
+        // 通过props来告诉vue实例需要读取传递过来的哪些属性
+        // 为了防止子组件更改父组件的值让程序变得混乱，props是只读的，如果需要操作该属性值，应该手动赋值给子组件作为属性使用
+        props: ['name', 'age', 'gender']
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: 'list',
+            age: 24,
+            gender: 'man'
+        }
+    })
+</script>

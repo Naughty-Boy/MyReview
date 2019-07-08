@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <shop-cart></shop-cart>
+    </div>
+</body>
+
+</html>
+<!-- 头部子组件 -->
+<template id="titleTemp">
+    <div>
+        List的购物车
+    </div>
+</template>
+<!-- 商品列表子组件 -->
+<template id="listTemp">
+    <div>
+        <div v-for="(item,index) in arr" :key="item.id">
+            <img src="" alt="商品">{{item.name}}
+            <button @click="sub(item.id)">-</button>
+            <input type="text" v-bind:value="item.num" @blur="update(item.id,$event)">
+            <button @click="add(item.id)">+</button>
+            <a href="" @click.prevent="del(item.id)">X</a>
+        </div>
+    </div>
+</template>
+<!-- 底部计价子组件 -->
+<template id="countTemp">
+    <div>
+        总价：<span>{{totle}}</span>
+        <button>结算</button>
+    </div>
+</template>
+<!-- 购物车组件模板 -->
+<template id="cartTemp">
+    <div>
+        <title-show></title-show>
+        <list :arr="arr" @delete="remove" @change="change" @to-update="toUpdate"></list>
+        <!-- 将商品数据传递到子组件 -->
+        <count :arr="arr"></count>
+    </div>
+</template>
+<script src="./vue.js"></script>
+<script>
+    // 将购物车板块的头部、列表、尾部抽离成组件
+    let titleShow = Vue.extend({
+        template: "#titleTemp"
+    })
+    let list = Vue.extend({
+        template: "#listTemp",
+        props: ['arr'],
+        methods: {
+            del(id) {
+                // 拿到要删除的商品id，触发自定义事件并传值
+                // console.log(id)
+                this.$emit('delete', id);
+            },
+            add(id) {
+                this.$emit('change', {
+                    id: id,
+                    type: "add"
+                })
+            },
+            sub(id) {
+                this.$emit('change', {
+                    id: id,
+                    type: "sub"
+                })
+            },
+            update(id, e) {
+                this.$emit('to-update', {
+                    id: id,
+                    num: parseInt(e.target.value)
+                })
+            }
+        }
+    })
+    let count = Vue.extend({
+            template: "#countTemp",
+            props: ['arr'],
+            computed: {
+                totle() {
+                    let all = 0;
+                    this.arr.forEach(item => {
+                        all += item.price * item.num;
+                    })
+                    return all;
+                }
+            }
+        })
+        //购物车组件
+    Vue.component('shopCart', {
+            template: "#cartTemp",
+            // 局部注册组件,
+            components: {
+                titleShow,
+                list,
+                count
+            },
+            data() {
+                return {
+                    arr: [{
+                        id: 0,
+                        name: "TCL彩电",
+                        price: 1000,
+                        img: "",
+                        num: 2
+                    }, {
+                        id: 1,
+                        name: "mp4",
+                        price: 900,
+                        img: "",
+                        num: 2
+                    }, {
+                        id: 2,
+                        name: "mp3",
+                        price: 600,
+                        img: "",
+                        num: 2
+                    }, {
+                        id: 3,
+                        name: "Nokia",
+                        price: 1200,
+                        img: "",
+                        num: 2
+                    }]
+                }
+            },
+            methods: {
+                remove(id) {
+                    let targetIndex = 0;
+                    this.arr.forEach((item, index) => {
+                            if (item.id == id) {
+                                targetIndex = index
+                            }
+                        })
+                        // console.log(targetIndex)
+                    this.arr.splice(targetIndex, 1);
+                },
+                change(obj) {
+                    if (obj.type == 'add') {
+                        this.arr.forEach(item => {
+                            if (item.id == obj.id) {
+                                item.num++;
+                            }
+                        })
+                    } else {
+                        this.arr.forEach(item => {
+                            if (item.id == obj.id) {
+                                item.num--;
+                            }
+                        })
+                    }
+                },
+                toUpdate(obj) {
+                    this.arr.forEach(item => {
+                        if (item.id == obj.id) {
+                            item.num = obj.num;
+                        }
+                    })
+                }
+            }
+        })
+        // Vue实例
+    let vm = new Vue({
+        el: "#app"
+    })
+</script>

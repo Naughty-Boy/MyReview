@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>父组件中的num：{{num}}</p>
+        <!-- 引入全局组件 -->
+        <com @change="change"></com>
+        <button @click="test(1,$event)">测试</button>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    // 注册一个全局组件
+    Vue.component('com', {
+        template: `
+        <div>
+            <p>全局组件中的num：{{num}}</p>
+            <button @click="handler">将数据传递到父组件</button>
+        </div>`,
+        data() {
+            return {
+                num: 666
+            }
+        },
+        methods: {
+            handler() {
+                this.$emit('change', this.num);
+            }
+        }
+    })
+    let vm = new Vue({
+        el: "#app",
+        methods: {
+            change(value, e) {
+                this.num = value;
+                console.log(value)
+            },
+            test(val, e) {
+                console.log(val, e)
+            }
+        },
+        data: {
+            num: 999
+        }
+    })
+</script>

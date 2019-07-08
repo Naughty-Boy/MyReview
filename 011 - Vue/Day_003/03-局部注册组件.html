@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 引用实例中局部注册的组件 -->
+        <com1></com1>
+        <com2></com2>
+        <!-- 引用全局组件 -->
+        <case></case>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 创建两个局部组件
+    let com1 = Vue.extend({
+        template: "<h3>我是组件1</h3>"
+    })
+    let com2 = Vue.extend({
+            template: "<h3>我是局部组件2</h3>"
+        })
+        // 创建一个全局组件实例
+    let com = Vue.extend({
+            // 组件特有属性，组件的模板内容，根标签只能有一个！
+            //在全局组件中引用局部组件
+            template: `<div>
+                    <com1></com1>
+                    <com2></com2>
+                </div>`,
+            //全局组件要使用局部组件时同样需要注册，否则无法使用
+            components: {
+                com1,
+                com2
+            }
+        })
+        // 注册全局组件
+    Vue.component('case', com);
+
+    // Vue实例
+    let vm = new Vue({
+        el: '#app',
+        //局部注册组件
+        components: {
+            com1,
+            com2
+        }
+    })
+</script>

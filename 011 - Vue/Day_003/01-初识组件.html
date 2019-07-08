@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实例要绑定的视图标签 -->
+    <div id="app">
+        <!-- 引用若干个全局组件 -->
+        <case></case>
+        <case></case>
+    </div>
+</body>
+
+</html>
+<!-- 引入vue.js文件 -->
+<script src="./vue.js"></script>
+<script>
+    // 创建一个组件实例
+    let com = Vue.extend({
+            // 组件特有属性，组件的模板内容，根标签只能有一个！
+            template: "<h2>{{msg}}</h2>",
+            // 组建中的data是一个函数，返回一个匿名对象，目的是让每一个组件拥有独立的作用域
+            data() {
+                return {
+                    msg: "Hello Component"
+                }
+            }
+        })
+        // 注册全局组件
+    Vue.component('case', com);
+    let vm = new Vue({
+        el: '#app'
+    })
+</script>
