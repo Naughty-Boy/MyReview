@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function info() {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                resolve('成功')
+            }, 2000);
+        })
+    }
+    // .then接收一个函数表示成功的回调，接收两个函数表示成功和失败的回调，当然可以使用catch来捕获
+    info().then(function(value) {
+        console.log(value)
+    }).catch(function(value) {
+        // catch用来捕获promise链上的错误回调
+        console.log(value)
+    }).finally(function() {
+        // finally不管是否有错都会正常执行
+        console.log("finally执行了")
+    })
+</script>

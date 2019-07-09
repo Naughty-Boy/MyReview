@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 创建一个请求函数
+    function getInfo(url) {
+        // 使用promise
+        let promise = new Promise((resolve, reject) => {
+                // 发起ajax请求
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        //成功后调用resolve
+                        resolve(xhr.responseText);
+                    } else {
+                        //失败后调用reject
+                        reject(xhr.responseText);
+                    }
+                }
+            })
+            // 返回promise实例用于执行回调
+        return promise;
+    }
+    //获取到3个promise实例
+    let p1 = getInfo('./info');
+    let p2 = getInfo('./info2');
+    let p3 = getInfo('./info3');
+    //异步并发，当所有回调执行完毕才会拿到结果
+    Promise.all([p1, p2, p3]).then(function(result) {
+            // result是一个数组，存放着all方法的数组参数对应的promise回调结果
+            console.log(result)
+        })
+        //异步并发，只要有一个回调完成就能够拿到结果
+    Promise.race([p1, p2, p3]).then(function(result) {
+        // result拿到的是，race中存放的promis对象数组，其中最先完成回调的结果
+        console.log(result)
+    })
+</script>

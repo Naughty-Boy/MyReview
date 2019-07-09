@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./axios.js"></script>
+<script>
+    // 全局配置超时时间
+    axios.defaults.timeout = 1500;
+    // 全局配置请求头内容，在发送请求的时候会自动携带
+    axios.defaults.headers['hobby'] = "sing-dance-rap";
+    // 全局配置url地址,后面发起的网络请求会自动拼接全局定义的url
+    axios.defaults.baseURL = "http://localhost:8080";
+    axios.get('info').then((result) => {
+        console.log(result)
+    })
+</script>

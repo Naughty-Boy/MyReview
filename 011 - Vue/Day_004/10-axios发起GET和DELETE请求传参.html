@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!-- 引入axios -->
+<script src="./axios.js"></script>
+<script>
+    // axios基本用法
+    axios.get('/info').then((result) => {
+            // 结果数据存放在result.data中
+            console.log(result)
+        })
+        // 1.1axios发起get请求并传递参数
+    axios.get('/query?id=123').then((result) => {
+            console.log(result.data)
+        })
+        // 1.2axios发起get请求并传递参数
+    axios.get('/params/456').then((result) => {
+            console.log(result.data)
+        })
+        // 2.使用匿名对象配置参数
+    axios.get('/query', {
+            params: {
+                id: 789
+            }
+        }).then((result) => {
+            console.log(result.data)
+        })
+        // 3.发送delete请求和传参
+    axios.delete('/delete', {
+        params: {
+            id: 999
+        }
+    }).then((result) => {
+        console.log(result.data)
+    })
+</script>

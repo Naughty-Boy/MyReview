@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./axios.js"></script>
+<script>
+    // 直接发起post请求
+    // 默认发起的是Content-Type: application/json;charset=UTF-8
+    axios.post('/post', {
+            id: 1,
+            name: 'list',
+            age: 24,
+            gender: 'man'
+        }).then((result) => {
+            console.log(result.data)
+        })
+        // 为了防止服务器不支持传递json的格式，可以使用urlSearchParams
+    let usp = new URLSearchParams();
+    usp.append('name', 'sdm');
+    usp.append('age', 22);
+    usp.append('gender', 'women');
+    // axios发起post请求，将usp作为传递参数
+    // 以这种方式发起的请求，格式是表单数据Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+    axios.post('/post', usp).then((result) => {
+            console.log(result.data)
+        })
+        // axios发起put请求
+    axios.put('/put/666', {
+
+        name: "zmq",
+        gender: 'women',
+        age: 21
+
+    }).then((result) => {
+        console.log(result.data)
+    })
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 1.直接传入get的url地址来请求
+    fetch('/query?id=123').then((response) => {
+            return response.text();
+        }).then((result) => {
+            //123
+            console.log(result);
+        })
+        // 2.通过路由传递id
+    fetch('/params/456', {
+            method: "GET"
+        }).then((response) => {
+            return response.text();
+        }).then((result) => {
+            //456
+            console.log(result)
+        })
+        // 3.发送delete请求，传递id
+    fetch('/delete/789', {
+        method: "DELETE"
+    }).then((response) => {
+        return response.text();
+    }).then((result) => {
+        //789
+        console.log(result)
+    })
+</script>

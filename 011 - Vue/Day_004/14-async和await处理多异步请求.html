@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./axios.js"></script>
+<script>
+    // 使用了async的函数自动返回一个promise对象
+    async function getInfo() {
+        // await关键字一定要放在async函数内部使用,await能够返回promise的正确执行结果并且多个之间保证顺序不变
+        let result1 = await axios.get('/info3');
+        let result2 = await axios.get('/info2');
+        console.log(result1, result2) //全部执行完毕后才进行打印输出
+            //返回目标结果
+        return result2.data;
+    }
+    // console.log(getInfo())  //函数被调用后，打印的结果是一个Promise对象
+    getInfo().then((result) => {
+        //result是前面函数中的返回结果
+        console.log(result)
+    })
+</script>

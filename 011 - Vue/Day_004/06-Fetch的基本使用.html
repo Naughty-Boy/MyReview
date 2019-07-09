@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // fetch号称是AJAX的替代品，是在ES6出现的，使用了ES6中的promise对象。
+    // 值得注意的是，fetch并不是向jquery一样将XMLHttpRequest对象进一步封装，而是原生js实现
+    fetch('./info').then(function(result) {
+        // 这里的result是一个response对象
+        // console.log(result instanceof Response); //true
+        // 使用result对象调用text()返回一个包装好的promise实例
+        // console.log(result.text() instanceof Promise)  //true
+        return result.text();
+    }).then(function(result) {
+        // 因为上一个.then方法返回的是一个包装过的promise，所以这里的.then中函数能够取得真正的结果
+        console.log(result)
+    })
+</script>

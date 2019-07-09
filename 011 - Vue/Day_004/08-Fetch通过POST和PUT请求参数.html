@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 1.表单格式POST请求
+    fetch('/post', {
+            // 设置请求方法
+            method: "POST",
+            // 设置请求体
+            body: "name=List&age=24",
+            // 设置请求头
+            headers: {
+                //模拟表单的格式
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then((response) => {
+            return response.text();
+        }).then((result) => {
+            console.log(result)
+        })
+        // 2.JSON格式发送POST请求
+    fetch('/post', {
+            method: "POST",
+            body: JSON.stringify({
+                name: "lwy",
+                age: 24.5
+            }),
+            headers: {
+                //设置为JSON格式
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            return response.text();
+        }).then((result) => {
+            console.log(result)
+        })
+        // 3.发起PUT请求
+    fetch('/put/123', {
+        method: "PUT",
+        body: JSON.stringify({
+            name: "李斯特",
+            age: 25
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then((response) => {
+        return response.text();
+    }).then((result) => {
+        console.log(result);
+    })
+</script>

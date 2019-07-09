@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 1.响应对象调用text（）方法
+    fetch('./getObj').then((response) => {
+            //.text方法会创建一个新的promise对象并且携带的参数是字符串类型
+            return response.text();
+        }).then((result) => {
+            //{"name":"list","age":24,"gender":"man"}
+            // console.log(result, typeof result)
+            // 通过JSON.parse()转换
+            // console.log(JSON.parse(result))
+        })
+        // 2.响应对象调用json()方法
+    fetch('/getObj').then((response) => {
+        //.json方法会创建一个新的promise对象并且携带的参数会解析为js对象
+        return response.json();
+    }).then((result) => {
+        console.log(result, typeof result)
+    })
+</script>

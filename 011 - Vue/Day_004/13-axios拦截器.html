@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./axios.js"></script>
+<script>
+    // 请求拦截
+    axios.interceptors.request.use((config) => {
+            //拦截器中传入的对象是：请求对象下的config对象
+            console.log(1, config)
+                // 设置请求头
+            config.headers['hobby'] = "sing-dance-rap";
+            // 作为中间处理程序，一定要将对象返回，不然报错
+            return config;
+        }, (err) => {
+            //处理响应错误的信息
+        })
+        // 响应拦截
+        // 响应拦截器中，函数传入的对象是响应对象
+    axios.interceptors.response.use((res) => {
+        console.log(2, res);
+        //直接返回数据
+        let data = res.data;
+        return data;
+    })
+    axios.get('/info').then((result) => {
+        console.log(result)
+    })
+</script>
