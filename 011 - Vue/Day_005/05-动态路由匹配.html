@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            overflow: hidden;
+            list-style: none;
+        }
+        
+        li {
+            padding: 10px 20px;
+            float: left;
+        }
+        
+        h2 {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <!-- 路由组件的标签，默认渲染为a标签，to属性为href -->
+                <router-link to="/first">first</router-link>
+            </li>
+            <li>
+                <router-link to="/user/1">用户1</router-link>
+            </li>
+            <li>
+                <router-link to="/user/2">用户2</router-link>
+            </li>
+            <li>
+                <router-link to="/user/3">用户3</router-link>
+            </li>
+        </ul>
+        <!-- 路由组件视图的占位标签 -->
+        <router-view></router-view>
+    </div>
+</body>
+<template id="userTemp">
+    <div>
+        <h2>我是用户组件</h2>
+        <p>在模板中拿到路由参数：{{$route.params.id}}</p>
+        <p>在组件的updated中拿到路由参数：{{userRoute}}</p>
+    </div>
+</template>
+
+</html>
+<script src="./vue.js"></script>
+<!-- 引入路由文件 -->
+<script src="./vue-router.js"></script>
+<script>
+    // 定义两个组件
+    let first = Vue.extend({
+        template: "<h2>你好，我是first组件</h2>"
+    })
+    let user = Vue.extend({
+            template: "#userTemp",
+            data() {
+                return {
+                    userRoute: ""
+                }
+            },
+            created() {
+                this.userRoute = this.$route.params.id
+            },
+            updated() {
+                // 能够拿到路由参数
+                // console.log(this.$route)
+                // 赋值
+                this.userRoute = this.$route.params.id;
+            }
+        })
+        // 创建路由对象
+    let router = new VueRouter({
+            // 路由规则
+            routes: [{
+                // 路由地址
+                path: "/first",
+                // 路由对应的组件
+                component: first
+            }, {
+                // 动态路由，路由中传入参数
+                // 参数不会影响前面路径的路由匹配，组件可以通过vm.$route拿到路由参数
+                path: "/user/:id",
+                component: user
+            }, {
+                path: '/',
+                // 重定向
+                redirect: '/first'
+            }]
+        })
+        // vue实例
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            router: 'first'
+        },
+        components: {
+            // 局部注册子组件
+            first,
+            user
+        },
+        // 将路由对象挂载到vue实例上
+        router
+    })
+</script>

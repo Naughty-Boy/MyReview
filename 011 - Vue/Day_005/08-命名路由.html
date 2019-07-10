@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link :to="{name:'first'}">first</router-link>
+        <router-link :to="{name:'second',params:{id:123}}">second</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+<script>
+    // 定义两个组件
+    let first = Vue.extend({
+        template: `<h2>你好，我是first组件</h2>`
+    })
+    let second = Vue.extend({
+            template: `<h2>你好，我是second组件,路由参数是:{{id}}</h2>`,
+            props: ['id']
+        })
+        // 路由组件
+    let router = new VueRouter({
+        routes: [{
+            path: '/first',
+            component: first,
+            //路由规则命名
+            name: 'first'
+        }, {
+            path: '/second/:id',
+            component: second,
+            name: 'second',
+            props: true
+        }]
+    })
+    let vm = new Vue({
+        el: "#app",
+        // 挂载路由
+        router
+    })
+</script>

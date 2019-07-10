@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            overflow: hidden;
+            list-style: none;
+        }
+        
+        li {
+            padding: 10px 20px;
+            float: left;
+        }
+        
+        h2 {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <a href="#/first">first</a>
+            </li>
+            <li>
+                <a href="#/second">second</a>
+            </li>
+            <li>
+                <a href="#/third">third</a>
+            </li>
+        </ul>
+        <!-- 组件的占位标签 -->
+        <component :is="router"></component>
+    </div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+    // 定义三个组件
+    let first = Vue.extend({
+        template: "<h2>你好，我是first组件</h2>"
+    })
+    let second = Vue.extend({
+        template: "<h2>你好，我是second组件</h2>"
+    })
+    let third = Vue.extend({
+            template: "<h2>你好，我是third组件</h2>"
+        })
+        // vue实例
+    let vm = new Vue({
+            el: "#app",
+            data: {
+                router: 'first'
+            },
+            components: {
+                first,
+                second,
+                third
+            }
+        })
+        // 监听hash路由的变化
+    window.onhashchange = function(e) {
+        // console.log(e)
+        console.log(location.hash.substr(1))
+        switch (location.hash.substr(1)) {
+            // 动态改变router的值，将component标签的is指向替换掉
+            case '/first':
+                vm.router = 'first'
+                break;
+            case '/second':
+                vm.router = 'second'
+                break;
+            case '/third':
+                vm.router = 'third'
+                break;
+        }
+    }
+</script>

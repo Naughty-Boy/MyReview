@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background-color: gray;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            text-align: center;
+            height: 500px;
+        }
+        
+        .container>nav {
+            flex-basis: 20%;
+            min-width: 160px;
+            background-color: skyblue;
+        }
+        
+        .container>nav a {
+            text-decoration: none;
+            line-height: 30px;
+            display: block;
+        }
+        
+        .container>nav li:nth-of-type(odd) a {
+            background-color: lightgoldenrodyellow;
+        }
+        
+        .container>nav li:nth-of-type(even) a {
+            background-color: lightgrey;
+        }
+        
+        .container>section {
+            flex-grow: 1;
+            background-color: lightgreen;
+        }
+        
+        footer {
+            background-color: gray;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+        }
+        
+        section table {
+            width: 100%;
+        }
+        
+        section th {
+            background-color: lightblue;
+        }
+        
+        section td {
+            background-color: rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+</body>
+<!-- 根组件模板 -->
+<template id="rootTemp">
+    <div>
+        <header>头部</header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <router-link to="/user">用户管理</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/promise">权限管理</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/product">商品管理</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/order">订单管理</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/setting">系统设置</router-link>
+                    </li>
+                </ul>
+            </nav>
+            <section>
+                <router-view></router-view>
+            </section>
+        </div>
+        <footer>尾部</footer>
+    </div>
+</template>
+
+</html>
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+<script>
+    // 创建根组件
+    let root = Vue.extend({
+            template: "#rootTemp"
+        })
+        // 创建子组件
+    let user = Vue.extend({
+        template: `
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th> 
+                        <th>姓名</th> 
+                        <th>年龄</th> 
+                        <th>操作</th>    
+                    </tr>    
+                </thead> 
+                <tbody>
+                    <tr v-for="(item,index) in list" :key="index">
+                        <td>{{item.id}}</td>  
+                        <td>{{item.name}}</td> 
+                        <td>{{item.age}}</td> 
+                        <td>
+                            <router-link :to="'/detail/'+item.id">编辑</router-link>    
+                        </td>   
+                    </tr>    
+                </tbody>   
+            </table>
+        </div>`,
+        data() {
+            return {
+                list: [{
+                    id: 1,
+                    name: 'lwy',
+                    age: 24
+                }, {
+                    id: 2,
+                    name: 'sdm',
+                    age: 21
+                }, {
+                    id: 3,
+                    name: 'zmq',
+                    age: 20
+                }]
+            }
+        }
+    })
+    let promise = Vue.extend({
+        template: `<h2>我是权限组件</h2>`
+    })
+    let product = Vue.extend({
+        template: `<h2>我是产品组件</h2>`
+    })
+    let order = Vue.extend({
+        template: `<h2>我是订单组件</h2>`
+    })
+    let setting = Vue.extend({
+            template: `<h2>我是设置组件</h2>`
+        })
+        //用户详情
+    let detail = Vue.extend({
+            template: `
+        <div>
+            这里是用户详情页，用户id为： {{id}}   
+            <button @click="goBack">返回</button>
+        </div>`,
+            props: ['id'],
+            methods: {
+                goBack() {
+                    this.$router.go(-1);
+                }
+            }
+        })
+        //路由
+    let router = new VueRouter({
+        routes: [{
+            path: '/',
+            redirect: '/user',
+            component: root,
+            children: [{
+                path: 'user',
+                component: user
+            }, {
+                path: 'promise',
+                component: promise
+            }, {
+                path: 'product',
+                component: product
+            }, {
+                path: 'order',
+                component: order
+            }, {
+                path: 'setting',
+                component: setting
+            }, {
+                path: 'detail/:id',
+                component: detail,
+                // 路由传参
+                props: true
+            }]
+        }]
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        // 挂载组件
+        components: {
+            root
+        },
+        router
+    })
+</script>
