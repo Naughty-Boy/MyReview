@@ -83,19 +83,30 @@
           title="提示"
           width="50%"
           :visible.sync="dialogVisible"
+          :before-close="addUserFormClosed"
         >
           <!-- 内容 -->
-          <!-- 用户表单 -->
-            <el-form label-width="80px"  :model="addUserForm" :rules="addUserRules" :ref="addUserForm">
+          <!-- 添加用户表单 -->
+            <el-form label-width="80px"  :model="addUserForm" :rules="addUserRules" ref="addUserForm"
+            >
                 <!-- 绑定验证规则 -->
                 <el-form-item prop="username" label="用户名">
-                    <el-input prefix-icon="fa fa-user-o"></el-input>
+                    <el-input prefix-icon="fa fa-user-o" v-model="addUserForm.username"></el-input>
+                </el-form-item>
+                <el-form-item prop="password" label="密码">
+                    <el-input prefix-icon="fa fa-unlock-alt" v-model="addUserForm.password"></el-input>
+                </el-form-item>
+                <el-form-item prop="email" label="邮箱">
+                    <el-input prefix-icon="fa fa-envelope-o" v-model="addUserForm.email"></el-input>
+                </el-form-item>
+                <el-form-item prop="mobile" label="手机">
+                    <el-input prefix-icon="fa fa-mobile" v-model="addUserForm.mobile"></el-input>
                 </el-form-item>
             </el-form>
           <!-- 谈话框按钮组 -->
           <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            <el-button @click="addUserFormClosed">取 消</el-button>
+            <el-button type="primary" @click="addUserFormSure('addUserForm')">确 定</el-button>
           </span>
         </el-dialog>
     </div>
@@ -103,6 +114,29 @@
 <script>
 export default {
     data(){
+        //自定义密码验证方式
+        var validateEmail = (rule, value, callback) => {
+            // 邮箱正则表达式
+        const regEmail=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        // 邮箱合法
+        if (regEmail.test(value)) {
+          callback();
+          return;
+        }
+        // 邮箱不合法
+        callback(new Error('请输入正确的邮箱'));
+      };
+      var validateMobile = (rule, value, callback) => {
+            // 手机号正则表达式
+        const regMobile=/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
+        // 手机号合法
+        if (regMobile.test(value)) {
+          callback();
+          return;
+        }
+        // 手机号不合法
+        callback(new Error('请输入正确的手机号'));
+      };
         return {
             //用户列表接口所需参数
             queryInfo:{
@@ -120,9 +154,20 @@ export default {
             addUserForm:{},
             addUserRules:{
                 username:[ // 非空验证
-                        { required: true, message: '请输入用户名称', trigger: 'blur' },
+                        { required: true, message: '请输入用户名称', trigger: 'blur'},
                         // 字符长度验证
                         { min: 5, max: 12, message: '用户名长度在 5-12 个字符', trigger: 'blur' }
+                        ],
+                        // 非空验证
+                password:[{ required: true, message: '请输入用户名称', trigger: 'blur'},
+                        // 字符长度验证
+                        { min: 5, max: 12, message: '用户名长度在 5-12 个字符', trigger: 'blur' }
+                        ],
+                email:[ // 自定义验证方式
+                        { required: true,validator: validateEmail, trigger: 'blur' },
+                        ],
+                mobile:[ // 自定义验证方式
+                        { required: true,validator: validateMobile,  trigger: 'blur' },
                         ]
             }
         }
@@ -147,7 +192,7 @@ export default {
             // 后台数据存储到data中
             this.userlist=result.data.users;
             this.total=result.data.total;
-            console.log(result)
+            // console.log(result)
         },
         //每页展示数量发生变化时
         handleSizeChange(newVal){
@@ -181,7 +226,49 @@ export default {
         // 添加用户谈话框显示
         showDialog(){
             this.dialogVisible=true;
-        }
+        },
+        // 谈话框关闭，清空表单数据
+        addUserFormClosed(){
+            
+            //关闭弹话框
+            this.dialogVisible = false
+            //通过$refs找到表单并且清空
+            this.$refs['addUserForm'].resetFields();
+        },
+        // 添加用户表单确定添加按钮
+        addUserFormSure(formName) {
+        this.$refs[formName].validate(async (valid) => {
+            // 如果验证失败不通过
+            if(!valid)return;
+            //通过后发起请求
+            // 使用表单数据
+            let usp=new URLSearchParams();
+            usp.append('username',this.addUserForm.username);
+            usp.append('password',this.addUserForm.password);
+            usp.append('email',this.addUserForm.email);
+            usp.append('mobile',this.addUserForm.mobile);
+            let {data:result}=await this.$http.post('users',usp);
+            //失败操作
+            if(result.meta.status!=201){
+                     this.$alert({
+                         message:'添加用户失败',
+                         type:'error'
+                     })
+                     return;
+                 }
+            //成功操作
+            this.$alert({
+                message:"添加用户成功",
+                type:'success'
+            })
+            // 关闭谈话框
+            this.dialogVisible=false;
+            //重新获取用户列表数据
+            this.getUserList();
+            //通过$refs找到表单并且清空
+            this.$refs['addUserForm'].resetFields();
+        });
+      },
     }
 }
 </script>
