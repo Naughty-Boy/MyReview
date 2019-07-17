@@ -8,6 +8,10 @@ import Home from './components/Home.vue'
 import Welcome from './components/Welcome.vue'
 //导入Users组件
 import Users from './components/user/Users.vue'
+//导入Promise组件
+import Promise from './components/power/Promise.vue'
+//导入Roles组件
+import Roles from './components/power/Roles.vue'
 
 Vue.use(Router)
 
@@ -24,14 +28,27 @@ let router = new Router({
             component: Home,
             name: 'home',
             redirect: '/welcome',
+            // 子路由
             children: [{
+                // 默认欢迎组件
                 path: '/welcome',
                 component: Welcome,
                 name: 'welcome'
             }, {
+                // 用户组件
                 path: '/users',
                 name: 'users',
                 component: Users
+            }, {
+                //权限组件
+                path: '/rights',
+                name: 'promise',
+                component: Promise
+            }, {
+                //角色组件
+                path: '/roles',
+                name: 'roles',
+                component: Roles
             }]
         }]
     })
