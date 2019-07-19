@@ -18,6 +18,8 @@ import Cate from './components/goods/Cate.vue'
 import Params from './components/goods/Params.vue'
 // 导入Order组件
 import Order from './components/order/Order.vue'
+// 导入Report组件
+import Report from './components/report/Report.vue'
 
 Vue.use(Router)
 
@@ -70,6 +72,11 @@ let router = new Router({
                 path: '/orders',
                 name: 'orders',
                 component: Order
+            }, {
+                //折线图组件
+                path: '/reports',
+                name: 'report',
+                component: Report
             }]
         }]
     })

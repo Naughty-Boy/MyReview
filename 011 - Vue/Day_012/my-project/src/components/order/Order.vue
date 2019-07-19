@@ -102,7 +102,7 @@
           :before-close="handleExpressClose">
           <!-- 内容区域 -->
           <!-- 时间线组件 -->
-          <el-timeline :reverse="reverse">
+          <el-timeline reverse>
               <el-timeline-item
                 v-for="(item, index) in expressInfo"
                 :key="index"
@@ -171,7 +171,7 @@ export default {
         //获取订单列表
         async getOrderList(){
             let {data: result}=await this.$http.get('orders',{params:this.queryInfo});
-            console.log(result)
+            // console.log(result)
             //获取失败
             if(result.meta.status!=200){
                 this.$alert({
