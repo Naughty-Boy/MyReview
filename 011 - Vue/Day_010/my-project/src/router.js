@@ -14,6 +14,8 @@ import Promise from './components/power/Promise.vue'
 import Roles from './components/power/Roles.vue'
 //导入Cate组件
 import Cate from './components/goods/Cate.vue'
+// 导入Params组件
+import Params from './components/goods/Params.vue'
 
 Vue.use(Router)
 
@@ -56,6 +58,11 @@ let router = new Router({
                 path: '/categories',
                 name: 'cate',
                 component: Cate
+            }, {
+                //商品参数组件
+                path: '/params',
+                name: 'params',
+                component: Params
             }]
         }]
     })
