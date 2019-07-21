@@ -37,6 +37,12 @@ import {
     Alert,
     Tabs,
     TabPane,
+    Steps,
+    Step,
+    Upload,
+    Checkbox,
+    CheckboxButton,
+    CheckboxGroup,
 } from 'element-ui'
 // 导入新更新的时间线组件
 import Timeline from './timeline/index.js'
@@ -75,5 +81,11 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Upload)
+Vue.use(Checkbox)
+Vue.use(CheckboxButton)
+Vue.use(CheckboxGroup)
 Vue.prototype.$alert = Message
 Vue.prototype.$confirm = MessageBox.confirm

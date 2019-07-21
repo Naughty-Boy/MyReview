@@ -20,6 +20,10 @@ import Params from './components/goods/Params.vue'
 import Order from './components/order/Order.vue'
 // 导入Report组件
 import Report from './components/report/Report.vue'
+//导入CateList组件
+import CateList from './components/goods/CateList.vue'
+//导入AddCate组件
+import AddCate from './components/goods/AddCate.vue'
 
 Vue.use(Router)
 
@@ -57,6 +61,16 @@ let router = new Router({
                 path: '/roles',
                 name: 'roles',
                 component: Roles
+            }, {
+                //商品列表组件
+                path: '/goods',
+                name: 'cateList',
+                component: CateList
+            }, {
+                //添加商品
+                path: '/goods/add',
+                name: 'addCate',
+                component: AddCate
             }, {
                 // 商品分类组件
                 path: '/categories',
